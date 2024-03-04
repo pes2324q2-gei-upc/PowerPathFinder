@@ -23,9 +23,9 @@ gh auth login
 ```bash
 gh repo clone pes2324q2-gei-upc/PowerPathFinder
 cd PowerPathFinder
-gh repo clone pes2324q2-gei-upc/ppf-user-api
-gh repo clone pes2324q2-gei-upc/ppf-route-api
-gh repo clone pes2324q2-gei-upc/ppf_mobile_client
+gh repo clone pes2324q2-gei-upc/ppf-user-api &
+gh repo clone pes2324q2-gei-upc/ppf-route-api &
+gh repo clone pes2324q2-gei-upc/ppf_mobile_client &
 ```
 
 ## Instalar requisitos
