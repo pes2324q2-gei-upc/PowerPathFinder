@@ -21,6 +21,7 @@ gh auth login
 
 **Clonad los repos**
 ```bash
+# Si utilizas gh
 gh repo clone pes2324q2-gei-upc/PowerPathFinder
 cd PowerPathFinder
 gh repo clone pes2324q2-gei-upc/ppf-user-api &
@@ -29,6 +30,7 @@ gh repo clone pes2324q2-gei-upc/ppf_mobile_client &
 ```
 o
 ```bash
+# Si eres un real i tiras de git
 git clone https://github.com/pes2324q2-gei-upc/PowerPathFinder.git
 cd PowerPathFinder
 git clone https://github.com/pes2324q2-gei-upc/ppf-user-api.git &
