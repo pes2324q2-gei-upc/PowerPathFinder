@@ -107,12 +107,15 @@ pip3 install django djangorestframework pytest drf-yasg pep8
 
 ### Flutter + Dart (+Android Studio)  
 **Solo Linux Debian**  
+_ESTO TARDA UN POCO BASTANTE, PASIENSA_  
 ```bash
+# ESTO TARDA UN POCO BASTANTE, PASIENSA
 cd ~/Downloads
 wget -v -d https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz -O flutter.tar.xz &
 wget -v -d https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.2.1.23/android-studio-2023.2.1.23-linux.tar.gz -O android-studio.tar.gz &
 wget -v -d https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmd-tools.zip &
 ```
+_ESTO TARDA UN POCO BASTANTE, PASIENSA_
 
 - Cuando acaben las descargas seguid con:
 ```bash
