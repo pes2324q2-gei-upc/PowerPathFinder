@@ -1,4 +1,4 @@
-![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/3dd3785e-9c3d-4241-b682-c72127bcab46)# PowerPathFinder
+# PowerPathFinder
 The main repo of power path finder, contains docker files and other pipeline configs
 
 ## Project Setup
@@ -82,13 +82,29 @@ sudo docker run hello-world
 ### Python
 (@Miki pots fer els de python? acuerdate de pep8 y pylint (mes el suite de testing si cal))
 
-### Flutter + Dart
+### Flutter + Dart (+Android Studio)  
+**Solo Linux Debian**  
+```bash
+wget -v -d https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz -O flutter.tar.xz -P ~/Downloads
 
-**Linux Debian**
-- Descargar https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz
+wget -v -d https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.2.1.23/android-studio-2023.2.1.23-linux.tar.gz -O android-studio.tar.gz -P ~/Downloads
 ```
-cd ~
-tar xf ~/Downloads/flutter_linux_3.19.2-stable.tar.xz
+
+- Cuando acaben las descargas seguid con:
+```bash
+cd /usr/local
+tar vxf ~/Downloads/flutter.tar.xz
 echo 'export PATH="$PATH:~/flutter/bin"' >> $HOME/.bashrc
+
+tar vxf ~/Downloads/android-studio.tar.gz
+sudo apt install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+/usr/local/android-studio/bin/studio.sh
 ```
-- Opcional `flutter precache`
+**Los demas mortales**  
+_Flutter_  
+- MAC: https://docs.flutter.dev/get-started/install/macos
+- WIN: https://docs.flutter.dev/get-started/install/windows
+
+_Android Studio_  
+- Download: https://developer.android.com/studio
+- Install: https://developer.android.com/studio/intro
