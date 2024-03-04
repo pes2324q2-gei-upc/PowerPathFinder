@@ -4,7 +4,7 @@ The main repo of power path finder, contains docker files and other pipeline con
 ## Project Setup
 ### Repository Setup
 
-**Instalar Github CLI**
+**Instalar Github CLI (Saltate esto si ya tienes el tema de credenciales con git solucionado)**
 - linux Debian (Ubuntu, etc): `sudo apt install gh`
 - macOS: https://github.com/cli/cli/releases/download/v2.44.1/gh_2.44.1_macOS_arm64.zip
 - win64: https://github.com/cli/cli/releases/download/v2.44.1/gh_2.44.1_windows_amd64.msi
@@ -26,6 +26,14 @@ cd PowerPathFinder
 gh repo clone pes2324q2-gei-upc/ppf-user-api &
 gh repo clone pes2324q2-gei-upc/ppf-route-api &
 gh repo clone pes2324q2-gei-upc/ppf_mobile_client &
+```
+o
+```bash
+git clone https://github.com/pes2324q2-gei-upc/PowerPathFinder.git
+cd PowerPathFinder
+git clone https://github.com/pes2324q2-gei-upc/ppf-user-api.git &
+git clone https://github.com/pes2324q2-gei-upc/ppf-route-api.git &
+git clone https://github.com/pes2324q2-gei-upc/ppf_mobile_client.git &
 ```
 
 ## Instalar requisitos
