@@ -1,4 +1,4 @@
-# PowerPathFinder
+![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/3dd3785e-9c3d-4241-b682-c72127bcab46)# PowerPathFinder
 The main repo of power path finder, contains docker files and other pipeline configs
 
 ## Project Setup
@@ -27,10 +27,28 @@ gh repo clone pes2324q2-gei-upc/ppf-route-api
 ```
 
 ## Instalar requisitos
-### Python
-(@Miki pots fer els de python? acuerdate de pep8 y pylint (mes el suite de testing si cal))
 
-### Flutter + Dart
+### VSCode
+- IDE: https://code.visualstudio.com/#alt-downloads
+- Extensiones:
+1. Abrid el repo/carpeta PowerPathFinder con VSCode
+2. Abrid la seccion de extensiones
+3. Copiad y pegad los siguientes nombres de extension en la barra de busqueda:
+```
+ms-azuretools.vscode-docker Dart-Code.flutter Dart-Code.dart-code GitHub.copilot GitHub.copilot-chat Gruntfuggly.todo-tree ms-python.python ms-python.pylint ms-python.debugpy ms-python.black-formatter ms-python.vscode-pylance ms-python.mypy-type-checker
+```
+![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/7e479d8b-4d1c-47fb-9e85-fb2b351a2628)
+
+4. Instalad todas las que aparezcan
+
+_OPCIONAL PERO RECOMENDADO_
+> Cuando tienes 30 extensiones como yo, si todas tus extensiones estan activadas de forma global estas se cargaran cada vez que abras VScode, sea el workspace(=carpeta) que sea. Para evitar eso... 
+
+5. Desactivad la extension de forma global  
+![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/da128750-3024-4fd7-98fc-df587e904b3a)
+
+7. Activadla solo en el workspace  
+![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/e3bb372f-bdc1-475d-bce9-0f8040fc6494)
 
 ### Docker
 **Los de macOS y Windows os toca apechugar con Docker Desktop**
@@ -61,10 +79,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 
-### VSCode
-- ide
-- extensiones
- - Docker
- - Python
- - Flutter
- - TodoTree
+### Python
+(@Miki pots fer els de python? acuerdate de pep8 y pylint (mes el suite de testing si cal))
+
+### Flutter + Dart
