@@ -85,7 +85,13 @@ sudo docker run hello-world
 ---
 
 ### Python
-(@Miki pots fer els de python? acuerdate de pep8 y pylint (mes el suite de testing si cal))
+##seguid las instru :)
+```bash
+sudo apt update && sudo apt full-upgrade -y && sudo apt install python3 -y && sudo apt install python3-pip -y 
+pip3 install django djangorestframework pytest drf-yasg pep8 
+
+# Y seguid las instrucciones
+```
 
 ---
 
