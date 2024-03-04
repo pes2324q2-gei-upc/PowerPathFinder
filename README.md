@@ -10,6 +10,7 @@ The main repo of power path finder, contains docker files and other pipeline con
 - win64: https://github.com/cli/cli/releases/download/v2.44.1/gh_2.44.1_windows_amd64.msi
 
 **Login a Github**
+> Copiad solo la primera linea! ;)  
 ```bash
 gh auth login
 > Github.com
