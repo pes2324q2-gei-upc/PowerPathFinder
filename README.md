@@ -88,7 +88,7 @@ sudo docker run hello-world
 - Descargar https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz
 ```
 cd ~
-tar xf ~/Downloads/flutter_linux_v3.19.2-stable.tar.xz
+tar xf ~/Downloads/flutter_linux_3.19.2-stable.tar.xz
 echo 'export PATH="$PATH:~/flutter/bin"' >> $HOME/.bashrc
 ```
 - Opcional `flutter precache`
