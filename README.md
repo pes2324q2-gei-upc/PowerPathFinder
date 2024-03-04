@@ -36,7 +36,7 @@ gh repo clone pes2324q2-gei-upc/ppf_mobile_client &
 2. Abrid la seccion de extensiones
 3. Copiad y pegad los siguientes nombres de extension en la barra de busqueda:
 ```
-ms-azuretools.vscode-docker Dart-Code.flutter Dart-Code.dart-code GitHub.copilot GitHub.copilot-chat Gruntfuggly.todo-tree ms-python.python ms-python.pylint ms-python.debugpy ms-python.black-formatter ms-python.vscode-pylance ms-python.mypy-type-checker
+ms-azuretools.vscode-docker Dart-Code.flutter Dart-Code.dart-code GitHub.copilot GitHub.copilot-chat GitHub.vscode-pull-request-github Gruntfuggly.todo-tree ms-python.python ms-python.pylint ms-python.debugpy ms-python.black-formatter ms-python.vscode-pylance ms-python.mypy-type-checker  
 ```
 ![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/7e479d8b-4d1c-47fb-9e85-fb2b351a2628)
 
@@ -92,6 +92,7 @@ sudo docker run hello-world
 ### Flutter + Dart (+Android Studio)  
 **Solo Linux Debian**  
 ```bash
+cd ~/Downloads
 wget -v -d https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz -O flutter.tar.xz &
 wget -v -d https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.2.1.23/android-studio-2023.2.1.23-linux.tar.gz -O android-studio.tar.gz &
 wget -v -d https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmd-tools.zip &
@@ -101,6 +102,7 @@ wget -v -d https://dl.google.com/android/repository/commandlinetools-linux-11076
 ```bash
 rm wget-log
 rm wget-log.1
+rm wget-log.2
 
 cd /usr/local
 sudo tar vxf ~/Downloads/flutter.tar.xz
