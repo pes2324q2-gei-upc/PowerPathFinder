@@ -25,10 +25,10 @@ gh repo clone pes2324q2-gei-upc/PowerPathFinder
 cd PowerPathFinder
 gh repo clone pes2324q2-gei-upc/ppf-user-api
 gh repo clone pes2324q2-gei-upc/ppf-route-api
+gh repo clone pes2324q2-gei-upc/ppf_mobile_client
 ```
 
 ## Instalar requisitos
-
 ### VSCode
 - IDE: https://code.visualstudio.com/#alt-downloads
 - Extensiones:
@@ -50,6 +50,8 @@ _OPCIONAL PERO RECOMENDADO_
 
 7. Activadla solo en el workspace  
 ![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/e3bb372f-bdc1-475d-bce9-0f8040fc6494)
+
+---
 
 ### Docker
 **Los de macOS y Windows os toca apechugar con Docker Desktop**
@@ -80,8 +82,12 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 
+---
+
 ### Python
 (@Miki pots fer els de python? acuerdate de pep8 y pylint (mes el suite de testing si cal))
+
+---
 
 ### Flutter + Dart (+Android Studio)  
 **Solo Linux Debian**  
