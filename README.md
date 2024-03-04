@@ -94,6 +94,7 @@ sudo docker run hello-world
 ```bash
 wget -v -d https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz -O flutter.tar.xz &
 wget -v -d https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.2.1.23/android-studio-2023.2.1.23-linux.tar.gz -O android-studio.tar.gz &
+wget -v -d https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmd-tools.zip &
 ```
 
 - Cuando acaben las descargas seguid con:
@@ -106,8 +107,16 @@ sudo tar vxf ~/Downloads/flutter.tar.xz
 echo 'export PATH="$PATH:/usr/local/flutter/bin"' >> $HOME/.bashrc
 
 sudo tar vxf ~/Downloads/android-studio.tar.gz
-sudo apt install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+sudo apt install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386 openjdk-19-jre-headless
 /usr/local/android-studio/bin/studio.sh
+
+cd ~/Android/Sdk
+unzip ~/Downloads/cmd-tools.zip
+cd cmdline-tools
+mkdir latest
+mv bin  lib  NOTICE.txt  source.properties ./latest
+./latest/bin/sdkmanager --install "cmdline-tools;latest"
+rm -r latest && mv latest-2/ latest
 ```
 ![image](https://github.com/pes2324q2-gei-upc/PowerPathFinder/assets/75203757/1f16b73c-900b-42b5-a3be-1f8f1518be93)
 
@@ -119,3 +128,4 @@ _Flutter_
 _Android Studio_  
 - Download: https://developer.android.com/studio
 - Install: https://developer.android.com/studio/intro
+
