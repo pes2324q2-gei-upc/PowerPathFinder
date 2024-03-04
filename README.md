@@ -83,3 +83,12 @@ sudo docker run hello-world
 (@Miki pots fer els de python? acuerdate de pep8 y pylint (mes el suite de testing si cal))
 
 ### Flutter + Dart
+
+**Linux Debian**
+- Descargar https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.2-stable.tar.xz
+```
+cd ~
+tar xf ~/Downloads/flutter_linux_v3.19.2-stable.tar.xz
+echo 'export PATH="$PATH:~/flutter/bin"' >> $HOME/.bashrc
+```
+- Opcional `flutter precache`
