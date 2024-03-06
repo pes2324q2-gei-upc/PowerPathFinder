@@ -1,4 +1,7 @@
 /ppf_mobile_client
 /ppf-route-api
 /ppf-user-api
+/db
 /.vscode
+/.pyvenv
+/.mypy_cache

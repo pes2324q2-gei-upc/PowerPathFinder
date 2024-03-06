@@ -1,0 +1,22 @@
+services:
+  route-api:
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./ppf-route-api/routes:/home/app/routes:ro
+      - ./db:/home/app/db:rw
+    command: sh -c "python manage.py migrate && python manage.py runserver"
+
+  user-api:
+    build:
+      context: ppf-user-api
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8000"
+    volumes:
+      - ./ppf-user-api/users:/home/app/users:ro
+      - ./db:/home/app/db:rw
+    command: sh -c "python manage.py migrate && python manage.py runserver"
