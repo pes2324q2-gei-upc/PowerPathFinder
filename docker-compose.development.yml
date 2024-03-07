@@ -6,9 +6,10 @@ services:
     ports:
       - "8080:8000"
     volumes:
-      - ./ppf-route-api/routes:/home/app/routes:ro
+      - ./ppf-route-api/routeApi:/home/app/routeApi:ro
+      - ./ppf-route-api/api:/home/app/api:ro
       - ./db:/home/app/db:rw
-    command: sh -c "python manage.py migrate && python manage.py runserver"
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
   user-api:
     build:
@@ -17,6 +18,7 @@ services:
     ports:
       - "8081:8000"
     volumes:
-      - ./ppf-user-api/users:/home/app/users:ro
+      - ./ppf-user-api/userApi:/home/app/userApi:ro
+      - ./ppf-user-api/api:/home/app/api:ro
       - ./db:/home/app/db:rw
-    command: sh -c "python manage.py migrate && python manage.py runserver"
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
