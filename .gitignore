@@ -4,6 +4,7 @@
 /db
 /.vscode
 /.pyvenv
+/.ppf
 /.venv
 /.mypy_cache
 /ppf/build
