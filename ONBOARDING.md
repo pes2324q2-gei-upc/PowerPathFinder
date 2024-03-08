@@ -54,8 +54,9 @@ Ahora vuestra terminal deberia ser algo como:
 
 Ejecutad:  
 
-```
+```bash
 pip install -r ppf-route-api/requirements.txt
+python -m pip install --config-settings editable-mode=strict --editable ppf 
 ```
 
 ---

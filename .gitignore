@@ -4,4 +4,7 @@
 /db
 /.vscode
 /.pyvenv
+/.venv
 /.mypy_cache
+/ppf/build
+/ppf/ppf.egg-info

@@ -1,24 +1,46 @@
 services:
-  route-api:
-    build:
-      context: ppf-route-api
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8000"
-    volumes:
-      - ./ppf-route-api/routeApi:/home/app/routeApi:ro
-      - ./ppf-route-api/api:/home/app/api:ro
-      - ./db:/home/app/db:rw
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-
   user-api:
     build:
       context: ppf-user-api
       dockerfile: Dockerfile
+    restart: unless-stopped
     ports:
       - "8081:8000"
     volumes:
-      - ./ppf-user-api/userApi:/home/app/userApi:ro
-      - ./ppf-user-api/api:/home/app/api:ro
-      - ./db:/home/app/db:rw
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      - ./ppf:/home/app/ppf
+      - ./ppf-user-api/userApi:/home/app/userApi
+      - ./ppf-user-api/api:/home/app/api
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+
+
+  route-api:
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-route-api/routeApi:/home/app/routeApi
+      - ./ppf-route-api/api:/home/app/api
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        # python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - user-api
+
