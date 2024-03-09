@@ -6,7 +6,7 @@ from django.contrib.auth.models import User as baseUser
 from django.db import models
 
 
-class User(baseUser):
+class MyUser(baseUser):
     """
     User class for our project
 
@@ -19,11 +19,17 @@ class User(baseUser):
     # profile_image = models.ImageField(
     #   upload_to=None, height_field=None, width_field=None, max_length=None)
 
+    class Meta:
+        app_label = 'common'
 
-class Driver(User):
+
+class Driver(baseUser):
 
     """
     This is the driver class
     """
     dni = models.CharField(max_length=50)
     driver_points = models.IntegerField()
+
+    class Meta:
+        app_label = 'common'
