@@ -8,14 +8,8 @@ models:
     users join to a route.
 """
 
+from django.contrib.auth.models import User as AuthUser
 from django.db import models
-
-class User(models.Model):
-    """
-    Placeholder
-    """
-    class Meta:
-        app_label = 'common'
 
 class Route(models.Model):
     """
@@ -37,7 +31,7 @@ class Route(models.Model):
     - price: Total price for the route calculated by... #TODO
     """
     id = models.BigAutoField(primary_key=True)
-    driver = models.ForeignKey(User, on_delete=models.CASCADE)
+    driver = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
     originLatitude = models.FloatField()
     originLongitude = models.PositiveBigIntegerField()
     originAlias = models.CharField(max_length=100)
@@ -58,14 +52,10 @@ class RoutePassenjer(models.Model):
     route.
     
     Attributes:
-    - id: Route passenjer unique identifier.
     - route: Route unique identifier.
-    - passenjer: User unique identifier.
-    - seat: Seat number assigned to the passenjer.
-    - price: Price paid by the passenjer for the route.
+    - passenjer: Passenjer User unique identifier.
     """
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    passenjer = models.ForeignKey(User, on_delete=models.CASCADE)
-    seat = models.PositiveBigIntegerField()
+    passenjer = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
     class Meta:
         app_label = 'common'
