@@ -36,7 +36,7 @@ class User(baseUser):
         app_label = 'common'
 
 
-class Driver(User):
+class Driver(baseUser):
     """
     This is the driver class
     """
