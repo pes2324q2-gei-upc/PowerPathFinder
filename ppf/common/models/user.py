@@ -36,12 +36,23 @@ class User(baseUser):
         app_label = 'common'
 
 
-class Driver(baseUser):
+class Driver(User):
     """
     This is the driver class
     """
+    # Pointer to the parent class witch we need since if not done
+    # it will end up referencing to baseUser and it will give conflicts.
+    # Also note that this will use the default UserManager thus the
+    # calls in the serializer create function and the default ones, will reference the
+    # UserManager functions such as Driver.objects.create_user instead of
+    # Driver.objects.create_driver.
+    # If more precise creation is needed the DriverManager class should be implemented
+    parent_pointer = models.OneToOneField(
+        "User", verbose_name="Parent Class", on_delete=models.CASCADE, parent_link=True)
+
+    # Rest of the fields needed
     dni = models.CharField(max_length=50)
-    driver_points = models.IntegerField()
+    driver_points = models.IntegerField(null=True, blank=True)
 
     class Meta:
         """
