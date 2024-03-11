@@ -35,7 +35,7 @@ En una terminal ejecutad `python -v` y assegurad que ejecutais la 3.12
 - Abrid una terminal en el repo PowerPathFinder
 
 ```bash
-python -m venv .pyvenv .
+python -m venv .venv
 
 # Linux
 source venv/bin/activate
