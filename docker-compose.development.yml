@@ -38,7 +38,7 @@ services:
       - /bin/sh
       - -c
       - |
-        # python -m pip install --config-settings editable-mode=strict -e ppf
+        python -m pip install --config-settings editable-mode=strict -e ppf
         python manage.py makemigrations
         python manage.py migrate
         python manage.py runserver 0.0.0.0:8000
