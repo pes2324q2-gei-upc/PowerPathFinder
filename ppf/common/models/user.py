@@ -24,7 +24,7 @@ class User(baseUser):
     first_name = models.CharField(max_length=50, null=False, blank=True)
     second_name = models.CharField(max_length=50, null=False, blank=True)
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
-    email = models.EmailField(_("email address"), blank=False, unique=True)
+    email = models.EmailField(blank=False, unique=True)
     points = models.IntegerField(null=True, blank=True)
     updated_at = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False)
