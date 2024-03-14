@@ -11,6 +11,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from rest_framework.authtoken.models import Token as baseToken
 
+
 class User(baseUser):
     """
     User class for our project
@@ -19,6 +20,9 @@ class User(baseUser):
         baseUser (User): default django implementation for user 
             (see the documentation for more info)
     """
+    username = models.CharField(max_length=50, null=False, blank=True)
+    first_name = models.CharField(max_length=50, null=False, blank=True)
+    second_name = models.CharField(max_length=50, null=False, blank=True)
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(null=True, blank=True)
     updated_at = models.DateTimeField(
@@ -88,7 +92,11 @@ class Valuation(models.Model):
         """
         app_label = 'common'
 
+
 class Token(baseToken):
+    """
+    base class for the token
+    """
     class Meta:
         """
             Meta used to add the label so that the imports work correctly
