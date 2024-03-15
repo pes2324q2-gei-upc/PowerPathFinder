@@ -20,13 +20,6 @@ class User(baseUser):
         baseUser (User): default django implementation for user 
             (see the documentation for more info)
     """
-    baseUser.username = models.CharField(max_length=50, null=False, blank=True)
-    baseUser.first_name = models.CharField(
-        max_length=50, null=False, blank=True)
-    baseUser.second_name = models.CharField(
-        max_length=50, null=False, blank=True)
-    baseUser.birth_date = models.DateField(auto_now=False, auto_now_add=False)
-    baseUser.email = models.EmailField(blank=False, unique=True)
     points = models.IntegerField(null=True, blank=True)
     updated_at = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False)
