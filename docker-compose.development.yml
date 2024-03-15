@@ -9,6 +9,7 @@ services:
     volumes:
       - ./ppf:/home/app/ppf
       - ./ppf-user-api/userApi:/home/app/userApi
+      - ./ppf-user-api/usrLogin:/home/app/usrLogin
       - ./ppf-user-api/api:/home/app/api
       - ./db:/home/app/db
     command:
