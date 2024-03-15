@@ -20,8 +20,6 @@ class User(baseUser):
         baseUser (User): default django implementation for user 
             (see the documentation for more info)
     """
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updated_at = models.DateTimeField(
