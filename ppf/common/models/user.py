@@ -20,6 +20,7 @@ class User(baseUser):
         baseUser (User): default django implementation for user 
             (see the documentation for more info)
     """
+    birth_date = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(null=True, blank=True)
     updated_at = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False)
