@@ -53,7 +53,7 @@ class Driver(User):
 
     # Rest of the fields needed
     dni = models.CharField(max_length=50)
-    driver_points = models.IntegerField(null=True, blank=True)
+    driver_points = models.IntegerField(default=0)
     capacity = models.IntegerField(default=0)
 
     class Meta:
