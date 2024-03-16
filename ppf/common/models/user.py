@@ -20,6 +20,8 @@ class User(baseUser):
         baseUser (User): default django implementation for user 
             (see the documentation for more info)
     """
+    # change to keep the pk defined in the UML consistent
+    baseUser.email = models.EmailField("email address", unique=True)
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updated_at = models.DateTimeField(
@@ -52,9 +54,9 @@ class Driver(User):
         "User", verbose_name="Parent Class", on_delete=models.CASCADE, parent_link=True)
 
     # Rest of the fields needed
-    dni = models.CharField(max_length=50)
-    driver_points = models.IntegerField(null=True, blank=True)
-    capacity = models.IntegerField(default=0)
+    dni = models.CharField(max_length=50, unique=True)
+    driver_points = models.IntegerField(default=0)
+    autonomy = models.IntegerField(default=0)
 
     class Meta:
         """
