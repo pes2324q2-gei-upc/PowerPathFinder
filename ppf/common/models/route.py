@@ -7,35 +7,51 @@ models:
 - RoutePassenjers: Describes the passenjers that are part of a route, records are created when
     users join to a route.
 """
+
 from django.db import models
 from .user import Driver, User
+
 
 class Route(models.Model):
     """
     Route between two points, organized by a driver to be shared with passenjers.
     """
+
     id = models.BigAutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
-    originLatitude = models.FloatField()
-    originLongitude = models.PositiveBigIntegerField()
+
+    originLat = models.FloatField()
+    originLon = models.FloatField()
     originAlias = models.CharField(max_length=100)
-    destinationLatitude = models.PositiveBigIntegerField()
-    destinationLongitude = models.PositiveBigIntegerField()
+
+    destinationLat = models.FloatField()
+    destinationLon = models.FloatField()
     destinationAlias = models.CharField(max_length=100)
+
+    polyline = models.TextField()
+    duration = models.PositiveIntegerField()
+
     departureTime = models.DateTimeField()
-    autonomy = models.PositiveBigIntegerField()
-    maxAutonomy = models.PositiveBigIntegerField()
-    freeSeats = models.PositiveBigIntegerField()
-    price = models.PositiveBigIntegerField()
+    freeSeats = models.PositiveSmallIntegerField()
+    price = models.PositiveSmallIntegerField(default=0)
+
+    cancelled = models.BooleanField(default=False)
+    finalized = models.BooleanField(default=False)
+
+    createdAt = models.DateTimeField(auto_now_add=True)
+
     class Meta:
-        app_label = 'common'
+        app_label = "common"
+
 
 class RoutePassenjer(models.Model):
     """
     Represents the passenjers that are part of a route, records are created when users join to a
     route.
     """
+
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     passenjer = models.ForeignKey(User, on_delete=models.CASCADE)
+
     class Meta:
-        app_label = 'common'
+        app_label = "common"
