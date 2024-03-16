@@ -54,7 +54,7 @@ class Driver(User):
         "User", verbose_name="Parent Class", on_delete=models.CASCADE, parent_link=True)
 
     # Rest of the fields needed
-    dni = models.CharField(max_length=50)
+    dni = models.CharField(max_length=50, unique=True)
     driver_points = models.IntegerField(default=0)
     autonomy = models.IntegerField(default=0)
 
