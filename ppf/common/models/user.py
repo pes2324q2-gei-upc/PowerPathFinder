@@ -9,6 +9,7 @@ __example: from ppf.common.models import User, Driver
 from django.db import models
 from django.contrib.auth.models import User as baseUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from rest_framework.authtoken.models import Token as baseToken
 
 
 class User(baseUser):
@@ -20,7 +21,7 @@ class User(baseUser):
             (see the documentation for more info)
     """
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
-    points = models.IntegerField(null=True, blank=True)
+    points = models.IntegerField(default=0)
     updated_at = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False)
     created_at = models.DateTimeField(
@@ -53,6 +54,7 @@ class Driver(User):
     # Rest of the fields needed
     dni = models.CharField(max_length=50)
     driver_points = models.IntegerField(null=True, blank=True)
+    capacity = models.IntegerField(default=0)
 
     class Meta:
         """
@@ -82,6 +84,17 @@ class Valuation(models.Model):
                                  MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(blank=True)
 
+    class Meta:
+        """
+            Meta used to add the label so that the imports work correctly
+        """
+        app_label = 'common'
+
+
+class Token(baseToken):
+    """
+    base class for the token
+    """
     class Meta:
         """
             Meta used to add the label so that the imports work correctly
