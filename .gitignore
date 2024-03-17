@@ -10,3 +10,4 @@
 /ppf/build
 /ppf/ppf.egg-info
 /.env.keys
+__pycache__
