@@ -29,6 +29,7 @@ class Route(models.Model):
     destinationAlias = models.CharField(max_length=100)
 
     polyline = models.TextField()
+    distance = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
 
     departureTime = models.DateTimeField()
