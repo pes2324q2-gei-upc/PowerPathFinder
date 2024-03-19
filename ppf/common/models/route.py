@@ -17,7 +17,6 @@ class Route(models.Model):
     Route between two points, organized by a driver to be shared with passenjers.
     """
 
-    id = models.BigAutoField(primary_key=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
 
     originLat = models.FloatField()
