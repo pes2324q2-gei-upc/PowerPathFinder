@@ -33,6 +33,7 @@ class Route(models.Model):
     duration = models.PositiveIntegerField()
 
     departureTime = models.DateTimeField()
+    arrivalTime = models.DateTimeField()
     freeSeats = models.PositiveSmallIntegerField()
     price = models.PositiveSmallIntegerField(default=0)
 
