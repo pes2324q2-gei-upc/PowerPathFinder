@@ -32,9 +32,8 @@ class Route(models.Model):
     duration = models.PositiveIntegerField()
 
     departureTime = models.DateTimeField()
-    arrivalTime = models.DateTimeField()
     freeSeats = models.PositiveSmallIntegerField()
-    price = models.PositiveSmallIntegerField(default=0)
+    price = models.FloatField(default=0.0)
 
     cancelled = models.BooleanField(default=False)
     finalized = models.BooleanField(default=False)
