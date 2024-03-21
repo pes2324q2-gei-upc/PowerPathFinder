@@ -11,3 +11,5 @@
 /ppf/ppf.egg-info
 /.env.keys
 __pycache__
+.env.debug
+.env.dev
