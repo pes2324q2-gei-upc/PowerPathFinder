@@ -12,3 +12,5 @@
 /.env.dev
 /.env.debug
 __pycache__
+.env.debug
+.env.dev
