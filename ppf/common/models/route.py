@@ -49,6 +49,7 @@ class Route(models.Model):
         """
         return self.freeSeats == 0
 
+
     def overlapsWith(self, routeId):
         """
         Returns True if the route temporally overlaps with the route with the provided ID, False otherwise.
@@ -57,6 +58,7 @@ class Route(models.Model):
         if self.departureTime + self.duration >= route.departureTime:
             return True
         return False
+
 
 
 class RoutePassenger(models.Model):
