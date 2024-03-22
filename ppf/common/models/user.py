@@ -6,8 +6,8 @@ This will be shared through all the dockers and can be accesses by importing it.
 __example: from ppf.common.models import User, Driver
 """
 
-from django.contrib.auth.models import User as baseUser
 from django.db import models
+from django.contrib.auth.models import User as baseUser
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
