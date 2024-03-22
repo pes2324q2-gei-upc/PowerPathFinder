@@ -43,6 +43,23 @@ class Route(models.Model):
     class Meta:
         app_label = "common"
 
+    def isFull(self):
+        """
+        Returns True if the route is full, False otherwise.
+        """
+        return self.freeSeats == 0
+
+
+    def overlapsWith(self, routeId):
+        """
+        Returns True if the route temporally overlaps with the route with the provided ID, False otherwise.
+        """
+        route = Route.objects.get(id=routeId)
+        if self.departureTime + self.duration >= route.departureTime:
+            return True
+        return False
+
+
 
 class RoutePassenger(models.Model):
     """
