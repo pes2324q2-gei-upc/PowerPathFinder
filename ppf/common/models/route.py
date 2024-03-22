@@ -3,8 +3,8 @@ Data models definition for all PowerPathFinder services, this module serves as s
 truth. Other services will introspect the DB in order to be up to date. It includes the following
 models:
 
-- Route: Describes the routes that drivers can create and passenjers can join.
-- RoutePassenjers: Describes the passenjers that are part of a route, records are created when
+- Route: Describes the routes that drivers can create and passengers can join.
+- RoutePassengers: Describes the passengers that are part of a route, records are created when
     users join to a route.
 """
 
@@ -14,7 +14,7 @@ from .user import Driver, User
 
 class Route(models.Model):
     """
-    Route between two points, organized by a driver to be shared with passenjers.
+    Route between two points, organized by a driver to be shared with passengers.
     """
 
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
@@ -44,14 +44,14 @@ class Route(models.Model):
         app_label = "common"
 
 
-class RoutePassenjer(models.Model):
+class RoutePassenger(models.Model):
     """
-    Represents the passenjers that are part of a route, records are created when users join to a
+    Represents the passengers that are part of a route, records are created when users join to a
     route.
     """
 
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    passenjer = models.ForeignKey(User, on_delete=models.CASCADE)
+    passenger = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         app_label = "common"
