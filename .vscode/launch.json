@@ -24,7 +24,29 @@
             },
             "justMyCode": false,
             "envFile": "${workspaceFolder}/.env.debug",
-            "preLaunchTask": "pre debug",
+            "preLaunchTask": "pre debug route",
+        },
+        {
+            "name": "Debug user-api",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "program": "${workspaceFolder}/ppf-user-api/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8080"
+            ],
+            "django": true,
+            "autoReload": {
+                "enable": true,
+                "pattern": [
+                    "${workspaceFolder}/ppf-user-api/**/*.py"
+                ]
+            },
+            "justMyCode": false,
+            "envFile": "${workspaceFolder}/.env.debug",
+            "preLaunchTask": "pre debug user",
         }
     ]
 }
