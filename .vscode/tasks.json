@@ -13,6 +13,9 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "DATABASE_NAME": "${workspaceFolder}/db/db.sqlite3",
+                },
+                "statusbar": {
+                    "color": "terminal.ansiCyan",
                 }
             },
         },
@@ -28,8 +31,11 @@
                 "color": "terminal.ansiRed"
             },
             "options": {
-                "cwd": "${workspaceFolder}"
-            }
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "color": "terminal.ansiYellow",
+                }
+            },
         },
         {
             "label": "Ultra Clean",
@@ -46,7 +52,10 @@
                 "color": "terminal.ansiRed"
             },
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "color": "terminal.ansiRed",
+                }
             }
         },
         {
