@@ -1,0 +1,249 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compose Up",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' up -d",
+            "icon": {
+                "color": "terminal.ansiCyan",
+                "id": "rocket"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "compose down",
+                "Ultra Clean",
+                "install ppf",
+                "makemigrations",
+                "migrate",
+                "loadfixtures"
+            ],
+            "dependsOrder": "sequence",
+        },
+        {
+            "label": "Compose Up v2",
+            "type": "shell",
+            "command": "./scripts/compose-up.sh",
+            "icon": {
+                "color": "terminal.ansiCyan",
+                "id": "rocket"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "DATABASE_NAME": "${workspaceFolder}/db/db.sqlite3",
+                }
+            },
+        },
+        {
+            "label": "Clean v2",
+            "type": "process",
+            "command": "./scripts/clean.sh",
+            "windows": {
+                "command": "cmd /c scripts/ultra-clean.bat",
+            },
+            "icon": {
+                "id": "wand",
+                "color": "terminal.ansiRed"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Ultra Clean v2",
+            "type": "process",
+            "command": "./scripts/clean.sh ultra",
+            "windows": {
+                "command": "cmd /c scripts/ultra-clean.bat",
+            },
+            "icon": {
+                "id": "wand",
+                "color": "terminal.ansiRed"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "pre debug",
+            "type": "shell",
+            "dependsOn": [
+                "compose down",
+                "Ultra Clean",
+                "install ppf",
+                "makemigrations",
+                "migrate",
+                "loadfixtures",
+                "compose up simple"
+            ],
+            "dependsOrder": "sequence",
+            "hide": true
+        },
+        {
+            "label": "compose up simple",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' up",
+            "hide": true,
+            "presentation": {
+                "close": true
+            },
+        },
+        {
+            "label": "compose down",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' down",
+            "hide": true,
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "presentation": {
+                "close": true
+            }
+        },
+        {
+            "label": "Ultra Clean",
+            "dependsOn": [
+                "clean db",
+                "clean pycache",
+                "clean migrations",
+                "clean ppf package",
+                "clean ppf build artifacts"
+            ],
+            "icon": {
+                "color": "terminal.ansiRed",
+                "id": "trash"
+            }
+        },
+        {
+            "label": "install ppf",
+            "type": "shell",
+            "command": ".venv/bin/pip install --config-settings editable-mode=strict -e ppf",
+            "hide": true,
+            "presentation": {
+                "close": true
+            }
+        },
+        {
+            "label": "makemigrations",
+            "type": "shell",
+            "hide": true,
+            "command": ".venv/bin/python ppf-route-api/manage.py makemigrations",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "DATABASE_NAME": "${workspaceFolder}/db/db.sqlite3",
+                }
+            },
+        },
+        {
+            "label": "migrate",
+            "type": "shell",
+            "command": ".venv/bin/python ppf-route-api/manage.py migrate",
+            "hide": true,
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "DATABASE_NAME": "${workspaceFolder}/db/db.sqlite3",
+                }
+            },
+        },
+        {
+            "label": "loadfixtures",
+            "type": "shell",
+            "command": ".venv/bin/python ppf-route-api/manage.py loaddata sample_common_driver.json sample_common_user.json sample_user_auth.json sample_common_routes.json",
+            "hide": true,
+            "presentation": {},
+            "options": {
+                "env": {
+                    "DATABASE_NAME": "${workspaceFolder}/db/db.sqlite3",
+                }
+            },
+        },
+        {
+            "label": "clean pycache",
+            "type": "shell",
+            "command": "find . -type d -name '__pycache__' -exec rm -fr {} +",
+            "osx": {
+                "command": "echo 'Not implemented for OSX'",
+            },
+            "linux": {
+                "command": "find . -type d -name '__pycache__' -exec rm -fr {} +",
+            },
+            "windows": {
+                "command": "echo 'Not implemented for Windows'",
+            },
+            "hide": true,
+            "presentation": {
+                "close": true
+            }
+        },
+        {
+            "label": "clean migrations",
+            "type": "shell",
+            "command": "find . -path 'ppf/common/migrations/*.py' -not -name '__init__.py' -delete",
+            "osx": {
+                "command": "echo 'Not implemented for OSX'",
+            },
+            "linux": {
+                "command": "find . -path 'ppf/common/migrations/*.py' -not -name '__init__.py' -delete",
+            },
+            "windows": {
+                "command": "echo 'Not implemented for Windows'",
+            },
+            "hide": true,
+            "presentation": {
+                "close": true
+            }
+        },
+        {
+            "label": "clean db",
+            "type": "shell",
+            "command": "sudo rm -f db/db.sqlite3",
+            "osx": {
+                "command": "echo 'Not implemented for OSX'",
+            },
+            "linux": {
+                "command": "sudo rm -f db/db.sqlite3",
+            },
+            "windows": {
+                "command": "echo 'Not implemented for Windows'",
+            },
+            "hide": true,
+            "presentation": {
+                "focus": true,
+                "close": true
+            }
+        },
+        {
+            "label": "clean ppf build artifacts",
+            "type": "shell",
+            "command": "sudo rm -rf ppf/build/ ppf/ppf.egg-info/",
+            "osx": {
+                "command": "echo 'Not implemented for OSX'",
+            },
+            "linux": {
+                "command": "sudo rm -rf ppf/build/ ppf/ppf.egg-info/",
+            },
+            "windows": {
+                "command": "echo 'Not implemented for Windows'",
+            },
+            "hide": true,
+            "presentation": {
+                "close": true
+            }
+        },
+        {
+            "label": "clean ppf package",
+            "type": "shell",
+            "command": ".venv/bin/pip uninstall -y ppf",
+            "hide": true,
+            "presentation": {
+                "close": true
+            }
+        }
+    ]
+}

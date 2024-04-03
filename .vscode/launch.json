@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug routes-api",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "program": "${workspaceFolder}/ppf-route-api/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8080"
+            ],
+            "django": true,
+            "autoReload": {
+                "enable": true,
+                "pattern": [
+                    "${workspaceFolder}/ppf-routes-api/**/*.py"
+                ]
+            },
+            "justMyCode": false,
+            "envFile": "${workspaceFolder}/.env.debug",
+            "preLaunchTask": "pre debug",
+        }
+    ]
+}
