@@ -5,6 +5,9 @@
             "label": "Compose Up",
             "type": "shell",
             "command": "./scripts/compose-up.sh",
+            "windows": {
+                "command": "cmd /c scripts/compose-up.bat",
+            },
             "icon": {
                 "color": "terminal.ansiCyan",
                 "id": "rocket"
@@ -24,7 +27,7 @@
             "type": "process",
             "command": "./scripts/clean.sh",
             "windows": {
-                "command": "cmd /c scripts/ultra-clean.bat",
+                "command": "cmd /c scripts/clean.bat",
             },
             "icon": {
                 "id": "wand",
@@ -45,7 +48,10 @@
                 "ultra"
             ],
             "windows": {
-                "command": "cmd /c scripts/ultra-clean.bat",
+                "command": "cmd /c scripts/clean.bat",
+                "args": [
+                    "ultra"
+                ]
             },
             "icon": {
                 "id": "flame",
