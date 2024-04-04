@@ -21,18 +21,13 @@ class User(baseUser):
     """
 
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField("email address", unique=True)
-    birth_date = models.DateField(auto_now=False, auto_now_add=False)
+    baseUser.email = models.EmailField("email address", unique=True)  # type: ignore
+    birthDate = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
-    updated_at = models.DateTimeField(
+    updatedAt = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False
     )
-    created_at = models.DateTimeField(
-        "Creation date of the User", auto_now=False, auto_now_add=True
-    )
-
-    # profile_image = models.ImageField(
-    #   upload_to=None, height_field=None, width_field=None, max_length=None)
+    createdAt = models.DateTimeField("Creation date of the User", auto_now=False, auto_now_add=True)
 
     class Meta:
         """
@@ -60,7 +55,7 @@ class Driver(User):
 
     # Rest of the fields needed
     dni = models.CharField(max_length=50, unique=True)
-    driver_points = models.IntegerField(default=0)
+    driverPoints = models.IntegerField(default=0)
     autonomy = models.IntegerField(default=0)
 
     class Meta:
@@ -85,7 +80,7 @@ class Valuation(models.Model):
     ]
 
     giver = models.ForeignKey(User, related_name="given_valuations", on_delete=models.CASCADE)
-    receiver_user = models.ForeignKey(
+    receiver = models.ForeignKey(
         User,
         related_name="received_user_valuations",
         on_delete=models.CASCADE,
