@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "./scripts/compose-up.sh",
             "windows": {
-                "command": "cmd /c scripts/compose-up.bat",
+                "command": "cmd /c scripts\\compose-up.bat",
             },
             "icon": {
                 "color": "terminal.ansiCyan",
@@ -24,10 +24,10 @@
         },
         {
             "label": "Clean",
-            "type": "process",
+            "type": "shell",
             "command": "./scripts/clean.sh",
             "windows": {
-                "command": "cmd /c scripts/clean.bat",
+                "command": "cmd /c scripts\\clean.bat",
             },
             "icon": {
                 "id": "wand",
@@ -42,16 +42,14 @@
         },
         {
             "label": "Ultra Clean",
-            "type": "process",
+            "type": "shell",
             "command": "./scripts/clean.sh",
             "args": [
                 "ultra"
             ],
             "windows": {
-                "command": "cmd /c scripts/clean.bat",
-                "args": [
-                    "ultra"
-                ]
+                "command": "cmd /c scripts\\clean.bat ultra",
+                "args": [],
             },
             "icon": {
                 "id": "flame",

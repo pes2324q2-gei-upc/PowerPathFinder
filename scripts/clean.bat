@@ -3,9 +3,9 @@ echo Starting project cleanup
 echo Composing down containers, this might take a while
 docker compose -f docker-compose.development.yml down > NUL 2>&1
 
-IF "%1"=="ultra" (
+if "%1"=="ultra" (
     echo Prunning all docker system, this may take a while
-    docker system prune -af > NUL 2>&1
+    docker system prune -af
 )
 
 echo Removing all python cache files, migrations, database, build files
