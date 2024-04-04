@@ -1,19 +1,30 @@
 @echo off
-echo Ultra clean
-echo Removing all docker containers, images, volumes, networks
-docker compose -f "docker-compose.development.yml" down
-docker system prune -af
+echo Starting project cleanup
+echo Composing down containers, this might take a while
+docker compose -f docker-compose.development.yml down > NUL 2>&1
+
+IF "%1"=="ultra" (
+    echo Prunning all docker system, this may take a while
+    docker system prune -af > NUL 2>&1
+)
 
 echo Removing all python cache files, migrations, database, build files
-for /d /r . %%d in (__pycache__) do @if exist "%%d" rd /s /q "%%d"
-for /r . %%f in (ppf\common\migrations\*.py) do @if not "%%~nxf"=="__init__.py" del "%%f"
+for /R %%G in (__pycache__) do (
+    rmdir /s /q "%%G"
+)
+
+for /R %%G in (ppf\common\migrations\*.py) do (
+    if not "%%~nxG"=="__init__.py" (
+        del "%%G"
+    )
+)
 
 echo Removing all python installation files and database
 del /f /q db\db.sqlite3
-rmdir /s /q ppf\build
-rmdir /s /q ppf\ppf.egg-info
+rmdir /s /q ppf\build ppf\ppf.egg-info
 
 echo Removing installed editable python packages
-.venv\Scripts\pip.exe uninstall -y ppf
+.venv\Scripts\pip uninstall -y ppf
 
-echo Clean complete
+echo 🧼 Clean complete 🧼
+echo.
