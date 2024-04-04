@@ -2,7 +2,6 @@
 /ppf-route-api
 /ppf-user-api
 /db
-/.vscode
 /.pyvenv
 /.ppf
 /.venv

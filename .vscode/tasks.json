@@ -1,0 +1,88 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compose Up",
+            "type": "shell",
+            "command": "./scripts/compose-up.sh",
+            "windows": {
+                "command": "cmd /c scripts\\compose-up.bat",
+            },
+            "icon": {
+                "color": "terminal.ansiCyan",
+                "id": "rocket"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "DATABASE_NAME": "${workspaceFolder}/db/db.sqlite3",
+                },
+                "statusbar": {
+                    "color": "terminal.ansiCyan",
+                }
+            },
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "./scripts/clean.sh",
+            "windows": {
+                "command": "cmd /c scripts\\clean.bat",
+            },
+            "icon": {
+                "id": "wand",
+                "color": "terminal.ansiRed"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "color": "terminal.ansiYellow",
+                }
+            },
+        },
+        {
+            "label": "Ultra Clean",
+            "type": "shell",
+            "command": "./scripts/clean.sh",
+            "args": [
+                "ultra"
+            ],
+            "windows": {
+                "command": "cmd /c scripts\\clean.bat ultra",
+                "args": [],
+            },
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiRed"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "color": "terminal.ansiRed",
+                }
+            }
+        },
+        {
+            "label": "pre debug route",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' down route-api",
+            "dependsOn": [
+                "Clean",
+                "Compose Up"
+            ],
+            "dependsOrder": "sequence",
+            "hide": true
+        },
+        {
+            "label": "pre debug user",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' down user-api",
+            "dependsOn": [
+                "Clean",
+                "Compose Up"
+            ],
+            "dependsOrder": "sequence",
+            "hide": true
+        },
+    ]
+}
