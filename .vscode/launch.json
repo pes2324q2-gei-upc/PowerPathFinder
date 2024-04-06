@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
+<<<<<<< HEAD
             "name": "Debug chat engine",
             "type": "go",
             "request": "launch",
@@ -12,6 +13,8 @@
             "program": "${workspaceFolder}/ppf-chat-engine/cmd/main.go",
         },
         {
+=======
+>>>>>>> 2fe9ffe498b59bb9ce96da250c38572f42d05081
             "name": "Debug routes-api",
             "type": "debugpy",
             "request": "launch",
