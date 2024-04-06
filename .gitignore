@@ -3,6 +3,7 @@
 /ppf-user-api
 /db
 /.vscode
+.vscode
 /.pyvenv
 /.ppf
 /.venv
