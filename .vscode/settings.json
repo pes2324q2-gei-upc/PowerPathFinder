@@ -1,0 +1,42 @@
+// Test comment
+{
+    "editor.formatOnSave": true,
+    "pylint.cwd": "${workspaceFolder}",
+    "pylint.args": [
+        "--parameter-naming-style=camelCase",
+        "--variable-naming-style=camelCase",
+        "--function-naming-style=camelCase",
+        "--load-plugins=pylint_django",
+        "--disable=W1203,C0116",
+        "--max-line-length=100",
+    ],
+    "black-formatter.cwd": "${workspaceFolder}",
+    "black-formatter.args": [
+        "--target-version",
+        "py312",
+        "--line-length",
+        "100",
+    ],
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportIncompatibleMethodOverride": "none",
+        "reportIncompatibleVariableOverride": "none"
+    },
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.logLevel": "Error",
+    "python.analysis.autoFormatStrings": true,
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.testing.cwd": "${workspaceFolder}/ppf-route-api",
+    "search.useIgnoreFiles": false,
+    "isort.check": true,
+    "isort.args": [
+        "--profile",
+        "black",
+        "--line-length",
+        "80",
+    ],
+    "python.analysis.extraPaths": [
+        "./ppf"
+    ]
+}
