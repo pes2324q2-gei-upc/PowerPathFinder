@@ -37,6 +37,31 @@ class User(baseUser):
         app_label = "common"
 
 
+class ChargerType(models.Model):
+    """
+    Model to represent the types of chargers.
+    """
+
+    MENNEKES = "Mennekes"
+    TESLA = "Tesla"
+    SCHUKO = "Schuko"
+    CHADEMO = "ChadeMO"
+    CSS_COMBO2 = "CSS Combo2"
+
+    CHARGER_CHOICES = [
+        (MENNEKES, "Mennekes"),
+        (TESLA, "Tesla"),
+        (SCHUKO, "Schuko"),
+        (CHADEMO, "ChadeMO"),
+        (CSS_COMBO2, "CSS Combo2"),
+    ]
+
+    chargerType = models.CharField(max_length=20, choices=CHARGER_CHOICES, unique=True)
+
+    def __str__(self):
+        return self.chargerType
+
+
 class Driver(User):
     """
     This is the driver class
@@ -57,6 +82,15 @@ class Driver(User):
     dni = models.CharField(max_length=50, unique=True)
     driverPoints = models.IntegerField(default=0)
     autonomy = models.IntegerField(default=0)
+
+    # Charger type attributes
+    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers", blank=True)
+
+    # Preferences attributes
+    canNotTravelWithPets = models.BooleanField(default=False)
+    listenToMusic = models.BooleanField(default=False)
+    noSmoking = models.BooleanField(default=False)
+    talkTooMuch = models.BooleanField(default=False)
 
     class Meta:
         """
