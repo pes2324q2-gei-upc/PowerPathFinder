@@ -21,13 +21,18 @@ class User(baseUser):
     """
 
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField("email address", unique=True)  # type: ignore
-    birthDate = models.DateField(auto_now=False, auto_now_add=False)
+    baseUser.email = models.EmailField("email address", unique=True)
+    birth_date = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
-    updatedAt = models.DateTimeField(
+    updated_at = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False
     )
-    createdAt = models.DateTimeField("Creation date of the User", auto_now=False, auto_now_add=True)
+    created_at = models.DateTimeField(
+        "Creation date of the User", auto_now=False, auto_now_add=True
+    )
+
+    # profile_image = models.ImageField(
+    #   upload_to=None, height_field=None, width_field=None, max_length=None)
 
     class Meta:
         """
@@ -80,7 +85,7 @@ class Driver(User):
 
     # Rest of the fields needed
     dni = models.CharField(max_length=50, unique=True)
-    driverPoints = models.IntegerField(default=0)
+    driver_points = models.IntegerField(default=0)
     autonomy = models.IntegerField(default=0)
 
     # Charger type attributes
@@ -114,7 +119,7 @@ class Valuation(models.Model):
     ]
 
     giver = models.ForeignKey(User, related_name="given_valuations", on_delete=models.CASCADE)
-    receiver = models.ForeignKey(
+    receiver_user = models.ForeignKey(
         User,
         related_name="received_user_valuations",
         on_delete=models.CASCADE,

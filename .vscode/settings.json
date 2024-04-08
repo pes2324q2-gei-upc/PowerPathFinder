@@ -1,3 +1,4 @@
+// Test comment
 {
     "editor.formatOnSave": true,
     "pylint.cwd": "${workspaceFolder}",
