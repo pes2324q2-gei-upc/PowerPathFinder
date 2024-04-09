@@ -9,6 +9,6 @@ wait
 echo "Creating migrations and loading sample data"
 .venv/bin/python ppf-route-api/manage.py makemigrations
 .venv/bin/python ppf-route-api/manage.py migrate
-.venv/bin/python ppf-route-api/manage.py loaddata sample_common_driver.json sample_common_user.json sample_user_auth.json sample_common_routes.json
+.venv/bin/python ppf-route-api/manage.py loaddata sample_users.json sample_routes.json
 echo "Spinning up development environment"
 docker compose -f 'docker-compose.development.yml' up -d
