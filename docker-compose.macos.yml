@@ -2,9 +2,9 @@ services:
   user-api:
     build:
       context: ppf-user-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.macos
 
   route-api:
     build:
       context: ppf-route-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.macos

@@ -17,6 +17,7 @@ echo "Spinning up development environment"
 
 if [ "$1" = "macos" ]; then
     docker compose -f 'docker-compose.development.yml' 'docker-compose.macos.yml' up -d
+    exit 0
 fi
 
 docker compose -f 'docker-compose.development.yml' up -d
