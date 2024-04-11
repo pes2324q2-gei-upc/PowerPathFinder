@@ -1,5 +1,6 @@
 services:
   user-api:
+    container_name: user-api
     build:
       context: ppf-user-api
       dockerfile: Dockerfile
@@ -23,6 +24,7 @@ services:
         python manage.py runserver 0.0.0.0:8000
 
   route-api:
+    container_name: route-api
     build:
       context: ppf-route-api
       dockerfile: Dockerfile
