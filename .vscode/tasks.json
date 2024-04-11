@@ -9,6 +9,9 @@
             "windows": {
                 "command": "cmd /c scripts\\compose-up.bat",
             },
+            "osx": {
+                "command": "./scripts/compose-up.sh macos",
+            },
             "icon": {
                 "color": "terminal.ansiCyan",
                 "id": "rocket"
