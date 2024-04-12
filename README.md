@@ -12,4 +12,5 @@ A test user is available for development purposes.
 > email: test@user.try
 
 Add the following header to your requests to authenticate as the test user:
-> X-Authorization: Token c65b642f6712afcdc288b9d3e643aaf1301d47ab
+> Authorization: Token c65b642f6712afcdc288b9d3e643aaf1301d47ab
+
