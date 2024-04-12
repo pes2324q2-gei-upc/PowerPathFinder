@@ -12,7 +12,7 @@ echo Installing editable ppf package
 echo Creating migrations and loading sample data
 .venv\Scripts\python ppf-route-api\manage.py makemigrations
 .venv\Scripts\python ppf-route-api\manage.py migrate
-.venv\Scripts\python ppf-route-api\manage.py loaddata sample_users.json sample_routes.json
+.venv\Scripts\python ppf-route-api\manage.py loaddata sample_users.json sample_routes.json load_chargerTypes.json
 
 echo Spinning up development environment
 docker compose -f docker-compose.development.yml up -d
