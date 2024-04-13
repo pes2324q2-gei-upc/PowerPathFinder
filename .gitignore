@@ -13,3 +13,4 @@
 __pycache__
 .env.debug
 .env.dev
+ppf/common/migrations/*_*.py
