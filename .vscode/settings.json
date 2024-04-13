@@ -38,5 +38,14 @@
     ],
     "python.analysis.extraPaths": [
         "./ppf"
+    ],
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "IMPROVE",
+        "[ ]",
+        "[x]"
     ]
 }
