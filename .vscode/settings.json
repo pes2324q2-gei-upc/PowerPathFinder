@@ -37,6 +37,7 @@
         "80",
     ],
     "python.analysis.extraPaths": [
-        "./ppf"
+        "./ppf",
+        "./ppf-payments-api/api"
     ]
 }
