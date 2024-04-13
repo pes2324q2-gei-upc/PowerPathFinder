@@ -19,10 +19,8 @@ class Payment(models.Model):
 
 class Refund(models.Model):
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
-    route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateTimeField(auto_now_add=True)
     reason = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Refund of {self.amount} for payment {self.payment} on {self.date}"
+        return f"Refund of {self.payment.amount} for payment {self.payment} on {self.date}"
