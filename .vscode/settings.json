@@ -51,5 +51,6 @@
     "cSpell.words": [
         "Polyline",
         "polylines"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }
