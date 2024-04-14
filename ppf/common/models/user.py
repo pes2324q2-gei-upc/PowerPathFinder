@@ -21,7 +21,7 @@ class User(baseUser):
     """
 
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField("email address", unique=True)
+    baseUser.email = models.EmailField("email address", unique=True) # type: ignore
     birthDate = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updatedAt = models.DateTimeField(
