@@ -65,6 +65,29 @@ class ChargerType(models.Model):
         return self.chargerType
 
 
+class Preference(models.Model):
+    """
+    Model to represent driver preferences.
+    """
+
+    canNotTravelWithPets = models.BooleanField(default=False)
+    listenToMusic = models.BooleanField(default=False)
+    noSmoking = models.BooleanField(default=False)
+    talkTooMuch = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (
+            "Travel Preferences: Can't Travel With Pets - "
+            + str(self.canNotTravelWithPets)
+            + ", Listen to Music - "
+            + str(self.listenToMusic)
+            + ", No Smoking - "
+            + str(self.noSmoking)
+            + ", Talk Too Much - "
+            + str(self.talkTooMuch)
+        )
+
+
 class Driver(User):
     """
     This is the driver class
@@ -87,13 +110,10 @@ class Driver(User):
     autonomy = models.IntegerField(default=0)
 
     # Charger type attributes
-    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers", blank=True)
+    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers")
 
     # Preferences attributes
-    canNotTravelWithPets = models.BooleanField(default=False)
-    listenToMusic = models.BooleanField(default=False)
-    noSmoking = models.BooleanField(default=False)
-    talkTooMuch = models.BooleanField(default=False)
+    preference = models.OneToOneField("Preference", on_delete=models.CASCADE)
 
     class Meta:
         """
