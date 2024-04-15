@@ -88,5 +88,14 @@
             "dependsOrder": "sequence",
             "hide": true
         },
+        {
+            "label": "pre debug chat",
+            "type": "shell",
+            "command": "swag init -d cmd,api,chat",
+            "options": {
+                "cwd": "${workspaceFolder}/ppf-chat-engine",
+            },
+            "hide": false
+        }
     ]
 }

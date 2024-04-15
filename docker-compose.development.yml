@@ -44,5 +44,25 @@ services:
       - |
         python -m pip install --config-settings editable-mode=strict -e ppf
         python manage.py runserver 0.0.0.0:8000
-    depends_on:
-      - user-api
+
+  admin-page:
+    container_name: ppf-admin-page
+    build:
+      context: ppf-admin-page
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8082:8000"
+    env_file:
+      - .env.debug
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-admin-page/adminApp:/home/app/adminApp
+      - ./ppf-admin-page/adminPage:/home/app/adminPage
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py runserver 0.0.0.0:8000
