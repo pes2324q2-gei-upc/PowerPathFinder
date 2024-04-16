@@ -46,3 +46,27 @@ services:
         python manage.py runserver 0.0.0.0:8000
     depends_on:
       - user-api
+
+  payments-api:
+    container_name: payments-api
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8083:8000"
+    env_file:
+      - .env.debug
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-payments-api/paymentsApi:/home/app/paymentsApi
+      - ./ppf-payments-api/api:/home/app/api
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - route-api

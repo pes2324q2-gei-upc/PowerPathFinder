@@ -5,6 +5,7 @@ type nul > db\db.sqlite3
 echo Installing requirements
 .venv\Scripts\pip install -r ppf-route-api\requirements.txt
 .venv\Scripts\pip install -r ppf-user-api\requirements.txt
+.venv\Scripts\pip install -r ppf-payments-api\requirements.txt
 
 echo Installing editable ppf package
 .venv\Scripts\pip install -e ppf

@@ -8,3 +8,8 @@ services:
     build:
       context: ppf-route-api
       dockerfile: Dockerfile.macos
+  
+  payments-api:
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile.macos
