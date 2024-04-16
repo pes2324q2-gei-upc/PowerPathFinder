@@ -21,7 +21,7 @@ class User(baseUser):
     """
 
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField("email address", unique=True)
+    baseUser.email = models.EmailField("email address", unique=True) # type: ignore
     birthDate = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updatedAt = models.DateTimeField(
@@ -93,6 +93,32 @@ class Valuation(models.Model):
     rating = models.IntegerField(
         choices=RATING_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
+    comment = models.TextField(blank=True)
+
+    class Meta:
+        """
+        Meta used to add the label so that the imports work correctly
+        """
+
+        app_label = "common"
+
+
+class Report(models.Model):
+    """
+    Model for storing Reports given by users to users or drivers.
+    """
+
+    reporter = models.ForeignKey(User, related_name="report_giver", on_delete=models.CASCADE)
+    reported = models.ForeignKey(
+        User,
+        related_name="report_receiver",
+        on_delete=models.CASCADE
+    )
+    
+    def __str__(self):
+        return f'{self.reporter} -> {self.reported}'
+    
+    
     comment = models.TextField(blank=True)
 
     class Meta:
