@@ -115,6 +115,8 @@ class Driver(User):
     # Preferences attributes
     preference = models.OneToOneField("Preference", on_delete=models.CASCADE)
 
+    iban = models.CharField(max_length=36, unique=True)
+
     class Meta:
         """
         Meta used to add the label so that the imports work correctly
