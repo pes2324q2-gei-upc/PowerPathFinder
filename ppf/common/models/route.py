@@ -36,6 +36,8 @@ class Route(models.Model):
     freeSeats = models.PositiveSmallIntegerField()
     price = models.FloatField(default=0.0)
 
+    passengers = models.ManyToManyField(User, related_name="joined_routes")
+
     cancelled = models.BooleanField(default=False)
     finalized = models.BooleanField(default=False)
 
@@ -58,16 +60,3 @@ class Route(models.Model):
         if self.departureTime + self.duration >= route.departureTime:
             return True
         return False
-
-
-class RoutePassenger(models.Model):
-    """
-    Represents the passengers that are part of a route, records are created when users join to a
-    route.
-    """
-
-    route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    passenger = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    class Meta:
-        app_label = "common"
