@@ -49,8 +49,10 @@
         "[x]"
     ],
     "cSpell.words": [
+        "forloop",
         "Polyline",
-        "polylines"
+        "polylines",
+        "subquery"
     ],
     "java.compile.nullAnalysis.mode": "automatic"
 }
