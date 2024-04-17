@@ -21,8 +21,7 @@ class User(baseUser):
     """
 
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField(  # type: ignore
-        "email address", unique=True)
+    baseUser.email = models.EmailField("email address", unique=True)  # type: ignore
     birthDate = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updatedAt = models.DateTimeField(
@@ -40,6 +39,54 @@ class User(baseUser):
         """
 
         app_label = "common"
+
+
+class ChargerType(models.Model):
+    """
+    Model to represent the types of chargers.
+    """
+
+    MENNEKES = "Mennekes"
+    TESLA = "Tesla"
+    SCHUKO = "Schuko"
+    CHADEMO = "ChadeMO"
+    CSS_COMBO2 = "CSS Combo2"
+
+    CHARGER_CHOICES = [
+        (MENNEKES, "Mennekes"),
+        (TESLA, "Tesla"),
+        (SCHUKO, "Schuko"),
+        (CHADEMO, "ChadeMO"),
+        (CSS_COMBO2, "CSS Combo2"),
+    ]
+
+    chargerType = models.CharField(max_length=20, choices=CHARGER_CHOICES, unique=True)
+
+    def __str__(self):
+        return self.chargerType
+
+
+class Preference(models.Model):
+    """
+    Model to represent driver preferences.
+    """
+
+    canNotTravelWithPets = models.BooleanField(default=False)
+    listenToMusic = models.BooleanField(default=False)
+    noSmoking = models.BooleanField(default=False)
+    talkTooMuch = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (
+            "Travel Preferences: Can't Travel With Pets - "
+            + str(self.canNotTravelWithPets)
+            + ", Listen to Music - "
+            + str(self.listenToMusic)
+            + ", No Smoking - "
+            + str(self.noSmoking)
+            + ", Talk Too Much - "
+            + str(self.talkTooMuch)
+        )
 
 
 class Driver(User):
@@ -62,6 +109,14 @@ class Driver(User):
     dni = models.CharField(max_length=50, unique=True)
     driverPoints = models.IntegerField(default=0)
     autonomy = models.IntegerField(default=0)
+
+    # Charger type attributes
+    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers")
+
+    # Preferences attributes
+    preference = models.OneToOneField("Preference", on_delete=models.CASCADE)
+
+    iban = models.CharField(max_length=36, unique=True)
 
     class Meta:
         """
