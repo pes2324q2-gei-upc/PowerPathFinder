@@ -66,3 +66,14 @@ services:
       - |
         python -m pip install --config-settings editable-mode=strict -e ppf
         python manage.py runserver 0.0.0.0:8000
+
+  chat-engine:
+    container_name: chat-engine
+    build:
+      context: ./ppf-chat-engine
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8083:8080"
+    volumes:
+      - ./db/chatengine:/opt/chatengine

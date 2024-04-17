@@ -12,9 +12,9 @@ wait
 echo "Creating migrations and loading sample data"
 .venv/bin/python ppf-route-api/manage.py makemigrations
 .venv/bin/python ppf-route-api/manage.py migrate
-.venv/bin/python ppf-route-api/manage.py loaddata sample_users.json sample_routes.json
-echo "Spinning up development environment"
+.venv/bin/python ppf-route-api/manage.py loaddata sample_users.json sample_routes.json service_profiles.json
 
+echo "Spinning up development environment"
 if [ "$1" = "macos" ]; then
     docker compose -f 'docker-compose.development.yml' 'docker-compose.macos.yml' up -d
     exit 0
