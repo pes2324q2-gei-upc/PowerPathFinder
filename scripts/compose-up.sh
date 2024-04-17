@@ -12,7 +12,9 @@ wait
 echo "Creating migrations and loading sample data"
 .venv/bin/python ppf-route-api/manage.py makemigrations
 .venv/bin/python ppf-route-api/manage.py migrate
-.venv/bin/python ppf-route-api/manage.py loaddata sample_users.json sample_routes.json service_profiles.json
+.venv/bin/python ppf-route-api/manage.py loaddata sample_users.json sample_routes.json
+.venv/bin/python ppf-route-api/manage.py loaddata load_chargerTypes.json service_profiles.json
+echo "Spinning up development environment"
 
 echo "Spinning up development environment"
 if [ "$1" = "macos" ]; then
