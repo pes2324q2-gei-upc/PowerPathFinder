@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [metadata]
-description = "PowerPathFinder is a powerful path finding tool."
+description = "PowerPathFinder is a powerful path finding tool"
 license = "MIT"
-author = "Your Name"
-author-email = "yourname@example.com"
+author = "ppf team"
+author-email = "ppf@upc.edu"
