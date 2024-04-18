@@ -27,8 +27,7 @@ class User(baseUser):
     updatedAt = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False
     )
-    createdAt = models.DateTimeField(
-        "Creation date of the User", auto_now=False, auto_now_add=True)
+    createdAt = models.DateTimeField("Creation date of the User", auto_now=False, auto_now_add=True)
 
     # profile_image = models.ImageField(
     #   upload_to=None, height_field=None, width_field=None, max_length=None)
@@ -114,9 +113,21 @@ class Driver(User):
     chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers")
 
     # Preferences attributes
-    preference = models.OneToOneField("Preference", on_delete=models.CASCADE)
+    preference = models.OneToOneField("Preference", on_delete=models.CASCADE, null=True)
 
-    iban = models.CharField(max_length=36, unique=True, null=True, blank=True)
+    iban = models.CharField(max_length=36, unique=True, blank=True)
+
+    def save(self, *args, **kwargs) -> None:
+        """
+        Override of the save method to add the preference if it does not exist
+        """
+        if not hasattr(self, "iban") or self.iban == "":
+            # Cannot exist without an iban
+            raise ValueError("Iban is required for a driver")
+        if not hasattr(self, "preference") or not self.preference:
+            self.preference = Preference.objects.create()
+
+        return super().save(*args, **kwargs)
 
     class Meta:
         """
@@ -139,8 +150,7 @@ class Valuation(models.Model):
         (5, "5"),
     ]
 
-    giver = models.ForeignKey(
-        User, related_name="given_valuations", on_delete=models.CASCADE)
+    giver = models.ForeignKey(User, related_name="given_valuations", on_delete=models.CASCADE)
     receiver = models.ForeignKey(
         User,
         related_name="received_user_valuations",
@@ -149,8 +159,7 @@ class Valuation(models.Model):
         blank=True,
     )
     rating = models.IntegerField(
-        choices=RATING_CHOICES, validators=[
-            MinValueValidator(1), MaxValueValidator(5)]
+        choices=RATING_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     comment = models.TextField(blank=True)
 
@@ -167,23 +176,20 @@ class Report(models.Model):
     Model for storing Reports given by users to users or drivers.
     """
 
-    reporter = models.ForeignKey(
-        User, related_name="report_giver", on_delete=models.CASCADE)
-    reported = models.ForeignKey(
-        User,
-        related_name="report_receiver",
-        on_delete=models.CASCADE
-    )
+    reporter = models.ForeignKey(User, related_name="report_giver", on_delete=models.CASCADE)
+    reported = models.ForeignKey(User, related_name="report_receiver", on_delete=models.CASCADE)
 
     updatedAt = models.DateTimeField(
-        "Last modification of the Report", auto_now=True, auto_now_add=False)
+        "Last modification of the Report", auto_now=True, auto_now_add=False
+    )
     createdAt = models.DateTimeField(
-        "Creation date of the Report", auto_now=False, auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.reporter} -> {self.reported}'
+        "Creation date of the Report", auto_now=False, auto_now_add=True
+    )
 
     comment = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.reporter} -> {self.reported}"
 
     class Meta:
         """
