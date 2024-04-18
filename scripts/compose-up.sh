@@ -1,6 +1,26 @@
 # Get the first argument into a variable
 ARG1="$1"
 
+# If a service is not present, clone it
+repos=("ppf-route-api" "ppf-user-api" "ppf-admin-page" "ppf-payments-api" "ppf-chat-engine")
+
+reload=false
+for repo in "${repos[@]}"; do
+    if [ ! -d "$repo" ]; then
+        reload=true
+        echo "Cloning $repo"
+        git clone https://github.com/pes2324q2-gei-upc/$repo.git &
+    fi
+done
+
+if [ $reload ]; then
+    wait
+    echo "-----------------------------------------------------"
+    echo "| repos have been cloned! reload your vscode window |"
+    echo "-----------------------------------------------------"
+    exit 1
+fi
+
 touch ./db/db.sqlite3
 echo "Installing requirements"
 .venv/bin/pip install -r ppf-route-api/requirements.txt &
