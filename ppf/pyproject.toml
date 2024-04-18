@@ -9,6 +9,7 @@ requires-python = ">=3.11"
 dependencies = [
     "Django>=5.0",
 ]
+readme = {file = "README.txt", content-type = "text/markdown"}
 
 [metadata]
 description = "PowerPathFinder is a powerful path finding tool"
