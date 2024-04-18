@@ -9,6 +9,7 @@ __example: from common.models import User, Driver
 from django.contrib.auth.models import User as baseUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from .route import Route
 
 
 class User(baseUser):
@@ -155,9 +156,8 @@ class Valuation(models.Model):
         User,
         related_name="received_user_valuations",
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
     )
+    route = models.ForeignKey(Route, related_name="route_valuations", on_delete=models.CASCADE)
     rating = models.IntegerField(
         choices=RATING_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
