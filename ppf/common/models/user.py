@@ -6,7 +6,6 @@ This will be shared through all the dockers and can be accesses by importing it.
 __example: from common.models import User, Driver
 """
 
-from typing import Iterable
 from django.contrib.auth.models import User as baseUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -187,10 +186,10 @@ class Report(models.Model):
         "Creation date of the Report", auto_now=False, auto_now_add=True
     )
 
+    comment = models.TextField(blank=True)
+
     def __str__(self):
         return f"{self.reporter} -> {self.reported}"
-
-    comment = models.TextField(blank=True)
 
     class Meta:
         """
