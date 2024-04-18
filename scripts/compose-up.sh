@@ -13,7 +13,7 @@ for repo in "${repos[@]}"; do
     fi
 done
 
-if [ $reload ]; then
+if [ $reload = true ]; then
     wait
     echo "-----------------------------------------------------"
     echo "| repos have been cloned! reload your vscode window |"
