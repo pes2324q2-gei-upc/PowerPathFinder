@@ -116,7 +116,7 @@ class Driver(User):
     # Preferences attributes
     preference = models.OneToOneField("Preference", on_delete=models.CASCADE)
 
-    iban = models.CharField(max_length=36, unique=True)
+    iban = models.CharField(max_length=36, unique=True, null=True, blank=True)
 
     class Meta:
         """
