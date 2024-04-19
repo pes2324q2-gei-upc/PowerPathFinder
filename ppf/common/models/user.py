@@ -169,6 +169,7 @@ class Valuation(models.Model):
         """
 
         app_label = "common"
+        unique_together = ("giver", "receiver", "route")
 
 
 class Report(models.Model):
