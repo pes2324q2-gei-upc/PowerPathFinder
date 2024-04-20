@@ -21,16 +21,18 @@ class User(baseUser):
     """
 
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField("email address", unique=True)  # type: ignore
+    baseUser.email = models.EmailField(
+        "email address", unique=True)  # type: ignore
     birthDate = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updatedAt = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False
     )
-    createdAt = models.DateTimeField("Creation date of the User", auto_now=False, auto_now_add=True)
+    createdAt = models.DateTimeField(
+        "Creation date of the User", auto_now=False, auto_now_add=True)
 
-    # profile_image = models.ImageField(
-    #   upload_to=None, height_field=None, width_field=None, max_length=None)
+    profileImage = models.ImageField(
+        upload_to="profile_image", null=True, blank=True)
 
     class Meta:
         """
@@ -59,7 +61,8 @@ class ChargerType(models.Model):
         (CSS_COMBO2, "CSS Combo2"),
     ]
 
-    chargerType = models.CharField(max_length=20, choices=CHARGER_CHOICES, unique=True)
+    chargerType = models.CharField(
+        max_length=20, choices=CHARGER_CHOICES, unique=True)
 
     def __str__(self):
         return self.chargerType
@@ -110,10 +113,12 @@ class Driver(User):
     autonomy = models.IntegerField(default=0)
 
     # Charger type attributes
-    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers")
+    chargerTypes = models.ManyToManyField(
+        "ChargerType", related_name="drivers")
 
     # Preferences attributes
-    preference = models.OneToOneField("Preference", on_delete=models.CASCADE, null=True)
+    preference = models.OneToOneField(
+        "Preference", on_delete=models.CASCADE, null=True)
 
     iban = models.CharField(max_length=36, unique=True, blank=True)
 
@@ -150,7 +155,8 @@ class Valuation(models.Model):
         (5, "5"),
     ]
 
-    giver = models.ForeignKey(User, related_name="given_valuations", on_delete=models.CASCADE)
+    giver = models.ForeignKey(
+        User, related_name="given_valuations", on_delete=models.CASCADE)
     receiver = models.ForeignKey(
         User,
         related_name="received_user_valuations",
@@ -159,7 +165,8 @@ class Valuation(models.Model):
         blank=True,
     )
     rating = models.IntegerField(
-        choices=RATING_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)]
+        choices=RATING_CHOICES, validators=[
+            MinValueValidator(1), MaxValueValidator(5)]
     )
     comment = models.TextField(blank=True)
 
@@ -176,8 +183,10 @@ class Report(models.Model):
     Model for storing Reports given by users to users or drivers.
     """
 
-    reporter = models.ForeignKey(User, related_name="report_giver", on_delete=models.CASCADE)
-    reported = models.ForeignKey(User, related_name="report_receiver", on_delete=models.CASCADE)
+    reporter = models.ForeignKey(
+        User, related_name="report_giver", on_delete=models.CASCADE)
+    reported = models.ForeignKey(
+        User, related_name="report_receiver", on_delete=models.CASCADE)
 
     updatedAt = models.DateTimeField(
         "Last modification of the Report", auto_now=True, auto_now_add=False
