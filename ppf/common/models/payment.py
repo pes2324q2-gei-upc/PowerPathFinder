@@ -20,6 +20,7 @@ class Payment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=100)
     paymentIntentId = models.CharField(max_length=100, unique=True)
+    isRefunded = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.username}'s payment of {self.amount} on {self.date}"
