@@ -37,7 +37,22 @@
         "80",
     ],
     "python.analysis.extraPaths": [
-        "./ppf",
-        "./ppf-payments-api/api"
-    ]
+        "./ppf"
+    ],
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "IMPROVE",
+        "[ ]",
+        "[x]"
+    ],
+    "cSpell.words": [
+        "forloop",
+        "Polyline",
+        "polylines",
+        "subquery"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

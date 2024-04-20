@@ -62,7 +62,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
-                    "color": "terminal.ansiRed",
+                    "color": "terminal.ansiWhite",
                 }
             }
         },
@@ -88,6 +88,25 @@
             "dependsOrder": "sequence",
             "hide": true
         },
+        {
+            "label": "pre debug chat",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' down chat-engine",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "hide": true,
+            "dependsOn": "generate swagger docs"
+        },
+        {
+            "label": "generate swagger docs",
+            "type": "shell",
+            "command": "swag init -d cmd,api,chat",
+            "options": {
+                "cwd": "${workspaceFolder}/ppf-chat-engine",
+            },
+            "hide": true
+        }
         {
             "label": "pre debug payments",
             "type": "shell",

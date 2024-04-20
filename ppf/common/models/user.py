@@ -40,6 +40,54 @@ class User(baseUser):
         app_label = "common"
 
 
+class ChargerType(models.Model):
+    """
+    Model to represent the types of chargers.
+    """
+
+    MENNEKES = "Mennekes"
+    TESLA = "Tesla"
+    SCHUKO = "Schuko"
+    CHADEMO = "ChadeMO"
+    CSS_COMBO2 = "CSS Combo2"
+
+    CHARGER_CHOICES = [
+        (MENNEKES, "Mennekes"),
+        (TESLA, "Tesla"),
+        (SCHUKO, "Schuko"),
+        (CHADEMO, "ChadeMO"),
+        (CSS_COMBO2, "CSS Combo2"),
+    ]
+
+    chargerType = models.CharField(max_length=20, choices=CHARGER_CHOICES, unique=True)
+
+    def __str__(self):
+        return self.chargerType
+
+
+class Preference(models.Model):
+    """
+    Model to represent driver preferences.
+    """
+
+    canNotTravelWithPets = models.BooleanField(default=False)
+    listenToMusic = models.BooleanField(default=False)
+    noSmoking = models.BooleanField(default=False)
+    talkTooMuch = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (
+            "Travel Preferences: Can't Travel With Pets - "
+            + str(self.canNotTravelWithPets)
+            + ", Listen to Music - "
+            + str(self.listenToMusic)
+            + ", No Smoking - "
+            + str(self.noSmoking)
+            + ", Talk Too Much - "
+            + str(self.talkTooMuch)
+        )
+
+
 class Driver(User):
     """
     This is the driver class
@@ -60,6 +108,26 @@ class Driver(User):
     dni = models.CharField(max_length=50, unique=True)
     driverPoints = models.IntegerField(default=0)
     autonomy = models.IntegerField(default=0)
+
+    # Charger type attributes
+    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers")
+
+    # Preferences attributes
+    preference = models.OneToOneField("Preference", on_delete=models.CASCADE, null=True)
+
+    iban = models.CharField(max_length=36, unique=True, blank=True)
+
+    def save(self, *args, **kwargs) -> None:
+        """
+        Override of the save method to add the preference if it does not exist
+        """
+        if not hasattr(self, "iban") or self.iban == "":
+            # Cannot exist without an iban
+            raise ValueError("Iban is required for a driver")
+        if not hasattr(self, "preference") or not self.preference:
+            self.preference = Preference.objects.create()
+
+        return super().save(*args, **kwargs)
 
     class Meta:
         """
@@ -94,6 +162,34 @@ class Valuation(models.Model):
         choices=RATING_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     comment = models.TextField(blank=True)
+
+    class Meta:
+        """
+        Meta used to add the label so that the imports work correctly
+        """
+
+        app_label = "common"
+
+
+class Report(models.Model):
+    """
+    Model for storing Reports given by users to users or drivers.
+    """
+
+    reporter = models.ForeignKey(User, related_name="report_giver", on_delete=models.CASCADE)
+    reported = models.ForeignKey(User, related_name="report_receiver", on_delete=models.CASCADE)
+
+    updatedAt = models.DateTimeField(
+        "Last modification of the Report", auto_now=True, auto_now_add=False
+    )
+    createdAt = models.DateTimeField(
+        "Creation date of the Report", auto_now=False, auto_now_add=True
+    )
+
+    comment = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.reporter} -> {self.reported}"
 
     class Meta:
         """
