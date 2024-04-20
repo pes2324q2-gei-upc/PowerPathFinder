@@ -1,3 +1,12 @@
+"""
+Here is the common models for all the applications.
+
+This will be shared through all the dockers and can be accesses by importing it.
+
+__example: from common.models import Payment
+Payment: Maintains a record of the payments made by users for routes.
+"""
+
 from django.db import models
 
 from .user import User
@@ -14,6 +23,10 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s payment of {self.amount} on {self.date}"
-    
+
     class Meta:
+        """
+        Meta used to add the label so that the imports work correctly
+        """
+
         app_label = "common"
