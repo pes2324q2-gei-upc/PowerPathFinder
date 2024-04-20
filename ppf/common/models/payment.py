@@ -14,3 +14,6 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s payment of {self.amount} on {self.date}"
+    
+    class Meta:
+        app_label = "common"
