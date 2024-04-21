@@ -100,5 +100,5 @@ services:
     volumes:
       - ./db/chatengine:/opt/chatengine
     environment:
-      - ROUTE_API_URL=http://route-api:8080
-      - USER_API_URL=http://user-api:8081
+      - ROUTE_API_URL=http://route-api:8000
+      - USER_API_URL=http://user-api:8000
