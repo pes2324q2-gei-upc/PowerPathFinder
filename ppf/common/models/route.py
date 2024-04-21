@@ -8,6 +8,7 @@ models:
     users join to a route.
 """
 
+from datetime import timedelta
 from django.db import models
 
 from .user import Driver, User
@@ -56,7 +57,8 @@ class Route(models.Model):
         """
         Returns True if the route temporally overlaps with the route with the provided ID, False otherwise.
         """
+        duration = timedelta(seconds=self.duration)
         route = Route.objects.get(id=routeId)
-        if self.departureTime + self.duration >= route.departureTime:
+        if self.departureTime + duration >= route.departureTime:
             return True
         return False

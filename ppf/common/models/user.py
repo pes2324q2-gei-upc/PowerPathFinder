@@ -33,10 +33,6 @@ class User(baseUser):
     #   upload_to=None, height_field=None, width_field=None, max_length=None)
 
     class Meta:
-        """
-        Meta used to add the label so that the imports work correctly
-        """
-
         app_label = "common"
 
 
@@ -64,6 +60,9 @@ class ChargerType(models.Model):
     def __str__(self):
         return self.chargerType
 
+    class Meta:
+        app_label = "common"
+
 
 class Preference(models.Model):
     """
@@ -86,6 +85,9 @@ class Preference(models.Model):
             + ", Talk Too Much - "
             + str(self.talkTooMuch)
         )
+
+    class Meta:
+        app_label = "common"
 
 
 class Driver(User):
@@ -130,10 +132,6 @@ class Driver(User):
         return super().save(*args, **kwargs)
 
     class Meta:
-        """
-        Meta used to add the label so that the imports work correctly
-        """
-
         app_label = "common"
 
 
@@ -164,10 +162,6 @@ class Valuation(models.Model):
     comment = models.TextField(blank=True)
 
     class Meta:
-        """
-        Meta used to add the label so that the imports work correctly
-        """
-
         app_label = "common"
 
 
@@ -192,8 +186,4 @@ class Report(models.Model):
         return f"{self.reporter} -> {self.reported}"
 
     class Meta:
-        """
-        Meta used to add the label so that the imports work correctly
-        """
-
         app_label = "common"
