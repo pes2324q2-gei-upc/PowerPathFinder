@@ -32,7 +32,7 @@ class User(baseUser):
         "Creation date of the User", auto_now=False, auto_now_add=True)
 
     profileImage = models.ImageField(
-        upload_to="profile_image", null=True, blank=True)
+        upload_to="profile_image", null=True, blank=True, default="default.png")
 
     class Meta:
         """
