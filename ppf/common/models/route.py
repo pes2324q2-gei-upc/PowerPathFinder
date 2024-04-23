@@ -8,6 +8,7 @@ models:
     users join to a route.
 """
 
+from datetime import timedelta
 from django.db import models
 
 from .user import Driver, User
@@ -36,6 +37,8 @@ class Route(models.Model):
     freeSeats = models.PositiveSmallIntegerField()
     price = models.FloatField(default=0.0)
 
+    passengers = models.ManyToManyField(User, related_name="joined_routes")
+
     cancelled = models.BooleanField(default=False)
     finalized = models.BooleanField(default=False)
 
@@ -54,20 +57,8 @@ class Route(models.Model):
         """
         Returns True if the route temporally overlaps with the route with the provided ID, False otherwise.
         """
+        duration = timedelta(seconds=self.duration)
         route = Route.objects.get(id=routeId)
-        if self.departureTime + self.duration >= route.departureTime:
+        if self.departureTime + duration >= route.departureTime:
             return True
         return False
-
-
-class RoutePassenger(models.Model):
-    """
-    Represents the passengers that are part of a route, records are created when users join to a
-    route.
-    """
-
-    route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    passenger = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    class Meta:
-        app_label = "common"
