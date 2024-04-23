@@ -49,7 +49,10 @@
         "[x]"
     ],
     "cSpell.words": [
+        "authtoken",
+        "csrf",
         "forloop",
+        "onclick",
         "Polyline",
         "polylines",
         "subquery"
