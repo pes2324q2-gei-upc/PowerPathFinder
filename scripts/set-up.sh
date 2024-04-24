@@ -1,5 +1,9 @@
+#!/bin/bash
+
 # Get the first argument into a variable
 ARG1="$1"
+
+cd $(dirname "$0")/..
 
 echo this will remove the following folders:
 echo ppf-route-api
@@ -9,6 +13,7 @@ echo ppf-payments-api
 echo ppf-chat-engine
 echo ppf_mobile_client
 echo db
+echo .gitmodules
 
 read -p "Are you sure you want to continue? (y/n): " answer
 
@@ -22,6 +27,7 @@ if [ "$answer" = "y" ]; then
     rm -rf ppf_mobile_client
     echo Removing database
     rm -rf db
+    echo ""
     echo "Removal completed"
 else
     exit 1
@@ -35,20 +41,19 @@ for repo in "${repos[@]}"; do
     if [ ! -d "$repo" ]; then
         reload=true
         echo "Cloning $repo"
-        git submodule add https://github.com/pes2324q2-gei-upc/$repo.git
+        git submodule add -f https://github.com/pes2324q2-gei-upc/$repo.git
     fi
 done
 
-
-
-
 if [ $reload = true ]; then
+    wait
     echo initializing submodules
     git submodule init
     git submodule update
     git submodule update --remote
 
     wait
+
     echo "-----------------------------------------------------"
     echo "| repos have been cloned! reload your vscode window |"
     echo "-----------------------------------------------------"
@@ -61,6 +66,6 @@ if [ $reload = true ]; then
     rm -f db/db.sqlite3
     touch db/db.sqlite3
 
-    echo "Set-up complete"
+    echo Set-up complete
     exit 1
 fi
