@@ -7,6 +7,7 @@ echo ppf-user-api
 echo ppf-admin-page
 echo ppf-payments-api
 echo ppf-chat-engine
+echo ppf_mobile_client
 echo db
 
 read -p "Are you sure you want to continue? (y/n): " answer
@@ -18,6 +19,7 @@ if [ "$answer" = "y" ]; then
     rm -rf ppf-admin-page
     rm -rf ppf-payments-api
     rm -rf ppf-chat-engine
+    rm -rf ppf_mobile_client
     echo Removing database
     rm -rf db
     echo "Removal completed"
@@ -26,7 +28,7 @@ else
 fi
 
 # If a service is not present, clone it
-repos=("ppf-route-api" "ppf-user-api" "ppf-admin-page" "ppf-payments-api" "ppf-chat-engine")
+repos=("ppf-route-api" "ppf-user-api" "ppf-admin-page" "ppf-payments-api" "ppf-chat-engine" "ppf_mobile_client")
 
 reload=false
 for repo in "${repos[@]}"; do
