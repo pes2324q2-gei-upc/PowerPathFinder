@@ -35,7 +35,7 @@ for repo in "${repos[@]}"; do
     if [ ! -d "$repo" ]; then
         reload=true
         echo "Cloning $repo"
-        git clone https://github.com/pes2324q2-gei-upc/$repo.git &
+        gh repo clone https://github.com/pes2324q2-gei-upc/$repo
     fi
 done
 
