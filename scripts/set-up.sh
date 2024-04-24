@@ -35,11 +35,19 @@ for repo in "${repos[@]}"; do
     if [ ! -d "$repo" ]; then
         reload=true
         echo "Cloning $repo"
-        gh repo clone https://github.com/pes2324q2-gei-upc/$repo
+        git submodule add https://github.com/pes2324q2-gei-upc/$repo.git
     fi
 done
 
+
+
+
 if [ $reload = true ]; then
+    echo initializing submodules
+    git submodule init
+    git submodule update
+    git submodule update --remote
+
     wait
     echo "-----------------------------------------------------"
     echo "| repos have been cloned! reload your vscode window |"
