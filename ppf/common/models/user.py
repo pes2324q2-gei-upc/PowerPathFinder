@@ -123,9 +123,6 @@ class Driver(User):
         """
         Override of the save method to add the preference if it does not exist
         """
-        if not hasattr(self, "iban") or self.iban == "":
-            # Cannot exist without an iban
-            raise ValueError("Iban is required for a driver")
         if not hasattr(self, "preference") or not self.preference:
             self.preference = Preference.objects.create()
 
