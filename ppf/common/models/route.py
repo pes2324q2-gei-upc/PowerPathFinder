@@ -33,8 +33,8 @@ class RouteManager(models.Manager):
 
     # Some more example methods
     # TODO errase if not used
-    def free(self):
-        return self.filter(freeSeats__gt=0)
+    def active(self):
+        return self.filter(cancelled=False, finalized=False)
 
     def cancelled(self):
         return self.filter(cancelled=True)
