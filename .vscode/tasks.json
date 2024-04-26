@@ -106,7 +106,7 @@
                 "cwd": "${workspaceFolder}/ppf-chat-engine",
             },
             "hide": true
-        }
+        },
         {
             "label": "pre debug payments",
             "type": "shell",
