@@ -25,6 +25,7 @@ touch ./db/db.sqlite3
 echo "Installing requirements"
 .venv/bin/pip install -r ppf-route-api/requirements.txt &
 .venv/bin/pip install -r ppf-user-api/requirements.txt &
+.venv/bin/pip install -r ppf-payments-api/requirements.txt &
 echo "Installing editable ppf package"
 .venv/bin/pip install -e ppf &
 wait
