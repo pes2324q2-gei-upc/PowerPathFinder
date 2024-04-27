@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Get the first argument into a variable
 ARG1="$1"
 
@@ -27,6 +25,8 @@ if [ "$answer" = "y" ]; then
     rm -rf ppf_mobile_client
     echo Removing database
     rm -rf db
+    echo Removing .gitmodules
+    rm -f .gitmodules # Remove .gitmodules file
     echo ""
     echo "Removal completed"
 else
@@ -37,7 +37,13 @@ fi
 repos=("ppf-route-api" "ppf-user-api" "ppf-admin-page" "ppf-payments-api" "ppf-chat-engine" "ppf_mobile_client")
 
 reload=false
+echo Recreating .gitmodules file
+# Add submodule paths to .gitmodules
 for repo in "${repos[@]}"; do
+    echo "[submodule \"$repo\"]" >>.gitmodules
+    echo "    path = $repo" >>.gitmodules
+    echo "    url = https://github.com/pes2324q2-gei-upc/$repo.git" >>.gitmodules
+
     if [ ! -d "$repo" ]; then
         reload=true
         echo "Cloning $repo"
@@ -47,10 +53,13 @@ done
 
 if [ $reload = true ]; then
     wait
-    echo initializing submodules
-    git submodule init
-    git submodule update
-    git submodule update --remote
+    echo Initializing and updating submodules...
+    if git submodule init && git submodule update && git submodule update --remote; then
+        echo "Submodules initialized and updated successfully."
+    else
+        echo "Failed to initialize or update submodules. Please check the logs for more details."
+        exit 1
+    fi
 
     wait
 
@@ -60,12 +69,9 @@ if [ $reload = true ]; then
 
     echo creating database file...
 
-    cd $(dirname "$0")/..
-
     mkdir -p db
     rm -f db/db.sqlite3
     touch db/db.sqlite3
 
     echo Set-up complete
-    exit 1
 fi
