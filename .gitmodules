@@ -8,8 +8,8 @@
 	path = ppf-admin-page
 	url = https://github.com/pes2324q2-gei-upc/ppf-admin-page.git
 [submodule "ppf-payments-api"]
-	path = ppf-payments-api
-	url = https://github.com/pes2324q2-gei-upc/ppf-payments-api.git
+    path = ppf-payments-api
+    url = https://github.com/pes2324q2-gei-upc/ppf-payments-api.git
 [submodule "ppf-chat-engine"]
 	path = ppf-chat-engine
 	url = https://github.com/pes2324q2-gei-upc/ppf-chat-engine.git
