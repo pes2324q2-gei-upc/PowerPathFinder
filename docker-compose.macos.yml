@@ -9,11 +9,6 @@ services:
       context: ppf-route-api
       dockerfile: Dockerfile.macos
 
-  chat-engine:
-    build:
-      context: ppf-chat-engine
-      dockerfile: Dockerfile.macos
-
   payments-api:
     build:
       context: ppf-payments-api
