@@ -17,12 +17,13 @@ read -p "Are you sure you want to continue? (y/n): " answer
 
 if [ "$answer" = "y" ]; then
     echo Removing all cloned repositories
-    rm -rf ppf-route-api
-    rm -rf ppf-user-api
-    rm -rf ppf-admin-page
-    rm -rf ppf-payments-api
-    rm -rf ppf-chat-engine
-    rm -rf ppf_mobile_client
+    rm -rf ppf-route-api &
+    rm -rf ppf-user-api &
+    rm -rf ppf-admin-page &
+    rm -rf ppf-payments-api &
+    rm -rf ppf-chat-engine &
+    rm -rf ppf_mobile_client &
+    wait
     echo Removing database
     rm -rf db
     echo Removing .gitmodules
@@ -47,8 +48,9 @@ for repo in "${repos[@]}"; do
     if [ ! -d "$repo" ]; then
         reload=true
         echo "Cloning $repo"
-        git submodule add -f https://github.com/pes2324q2-gei-upc/$repo.git
+        git submodule add -f https://github.com/pes2324q2-gei-upc/$repo.git &
     fi
+    wait
 done
 
 if [ $reload = true ]; then
@@ -72,6 +74,7 @@ if [ $reload = true ]; then
     mkdir -p db
     rm -f db/db.sqlite3
     touch db/db.sqlite3
+    touch db/chatengine/chat.db
 
     echo Set-up complete
 fi
