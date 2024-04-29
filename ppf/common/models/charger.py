@@ -4,7 +4,6 @@ Here is the common models for all the applications.
 This will be shared through all the dockers and can be accesses by importing it.
 """
 from django.db import models
-from models.user import ChargerType
 
 
 class LocationCharger(models.Model):
@@ -22,7 +21,7 @@ class LocationCharger(models.Model):
 
     # Charger type info
     connectionType = models.ManyToManyField(
-        ChargerType, related_name='connectionType')
+        'ChargerLocationType', related_name='connectionType')
     kw = models.FloatField()
     acDc = models.CharField(choices=TypeOfCurrent.choices, max_length=5)
     velocities = models.ManyToManyField(
@@ -52,3 +51,32 @@ class ChargerVelocity(models.Model):
 
     def str(self):
         return self.velocity
+
+
+class ChargerLocationType(models.Model):
+    """
+    Model to represent the types of chargers.
+    """
+
+    MENNEKES = "Mennekes"
+    TESLA = "Tesla"
+    SCHUKO = "Schuko"
+    CHADEMO = "ChadeMO"
+    CSS_COMBO2 = "CSS Combo2"
+
+    CHARGER_CHOICES = [
+        (MENNEKES, "Mennekes"),
+        (TESLA, "Tesla"),
+        (SCHUKO, "Schuko"),
+        (CHADEMO, "ChadeMO"),
+        (CSS_COMBO2, "CSS Combo2"),
+    ]
+
+    chargerType = models.CharField(
+        max_length=20, choices=CHARGER_CHOICES, unique=True)
+
+    def __str__(self):
+        return self.chargerType
+
+    class Meta:
+        app_label = "common"
