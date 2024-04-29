@@ -1,9 +1,9 @@
-/ppf_mobile_client
-/ppf-route-api
-/ppf-user-api
-/ppf-payments-api
-/ppf-chat-engine
-/ppf-admin-page
+ppf_mobile_client
+ppf-route-api
+ppf-user-api
+ppf-payments-api
+ppf-chat-engine
+ppf-admin-page
 
 /db
 /.pyvenv
