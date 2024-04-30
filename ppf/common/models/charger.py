@@ -22,11 +22,11 @@ class LocationCharger(models.Model):
 
     # Charger type info
     connectionType = models.ManyToManyField(
-        'ChargerLocationType', related_name='connectionType')
+        'ChargerLocationType', related_name='connectionType', through="ChargerTypeM2M")
     kw = models.FloatField()
     acDc = models.CharField(max_length=5)
     velocities = models.ManyToManyField(
-        'ChargerVelocity', related_name='velocities')
+        'ChargerVelocity', related_name='velocities', through="ChargerVelocityM2M")
 
     # Location
     latitud = models.FloatField()
@@ -87,3 +87,17 @@ class ChargerLocationType(models.Model):
 
     class Meta:
         app_label = "common"
+
+
+class ChargerTypeM2M(models.Model):
+    location_charger = models.ForeignKey(
+        'LocationCharger', on_delete=models.CASCADE)
+    charger_location_type = models.ForeignKey(
+        'ChargerLocationType', on_delete=models.CASCADE)
+
+
+class ChargerVelocityM2M(models.Model):
+    location_charger = models.ForeignKey(
+        'LocationCharger', on_delete=models.CASCADE)
+    charger_velocity = models.ForeignKey(
+        'ChargerVelocity', on_delete=models.CASCADE)
