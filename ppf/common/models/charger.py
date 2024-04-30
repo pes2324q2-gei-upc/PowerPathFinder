@@ -7,6 +7,20 @@ from django.db import models
 from requests import delete
 
 
+class ChargerTypeM2M(models.Model):
+    location_charger = models.ForeignKey(
+        'LocationCharger', on_delete=models.CASCADE)
+    charger_location_type = models.ForeignKey(
+        'ChargerLocationType', on_delete=models.CASCADE)
+
+
+class ChargerVelocityM2M(models.Model):
+    location_charger = models.ForeignKey(
+        'LocationCharger', on_delete=models.CASCADE)
+    charger_velocity = models.ForeignKey(
+        'ChargerVelocity', on_delete=models.CASCADE)
+
+
 class LocationCharger(models.Model):
     """
     Model for storing the location of the chargers.
@@ -87,17 +101,3 @@ class ChargerLocationType(models.Model):
 
     class Meta:
         app_label = "common"
-
-
-class ChargerTypeM2M(models.Model):
-    location_charger = models.ForeignKey(
-        'LocationCharger', on_delete=models.CASCADE)
-    charger_location_type = models.ForeignKey(
-        'ChargerLocationType', on_delete=models.CASCADE)
-
-
-class ChargerVelocityM2M(models.Model):
-    location_charger = models.ForeignKey(
-        'LocationCharger', on_delete=models.CASCADE)
-    charger_velocity = models.ForeignKey(
-        'ChargerVelocity', on_delete=models.CASCADE)
