@@ -21,7 +21,13 @@ if [ $reload = true ]; then
     exit 1
 fi
 
+echo "Creating database files"
+mkdir -p ./db
+mkdir -p ./db/chatengine
+
 touch ./db/db.sqlite3
+touch ./db/chatengine/chat.db
+
 echo "Installing requirements"
 .venv/bin/pip install -r ppf-route-api/requirements.txt &
 .venv/bin/pip install -r ppf-user-api/requirements.txt &
