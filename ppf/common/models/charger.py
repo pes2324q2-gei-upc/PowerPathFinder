@@ -4,16 +4,17 @@ Here is the common models for all the applications.
 This will be shared through all the dockers and can be accesses by importing it.
 """
 from django.db import models
+from requests import delete
 
 
 class LocationCharger(models.Model):
     """
     Model for storing the location of the chargers.
     """
-    class TypeOfCurrent(models.TextChoices):
-        AC = "AC"
-        DC = "DC"
-        AC_DC = "AC/DC"
+    # class TypeOfCurrent(models.TextChoices):
+    #     AC = "AC"
+    #     DC = "DC"
+    #     AC_DC = "AC/DC"
 
     # General info
     promotorGestor = models.CharField(max_length=100)
@@ -23,7 +24,7 @@ class LocationCharger(models.Model):
     connectionType = models.ManyToManyField(
         'ChargerLocationType', related_name='connectionType')
     kw = models.FloatField()
-    acDc = models.CharField(choices=TypeOfCurrent.choices, max_length=5)
+    acDc = models.CharField(max_length=5)
     velocities = models.ManyToManyField(
         'ChargerVelocity', related_name='velocities')
 
@@ -37,14 +38,20 @@ class LocationCharger(models.Model):
 
 
 class ChargerVelocity(models.Model):
+
+    NORMAL = 'NORMAL'
+    semiRAPID = 'semiRAPID'
+    RAPID = 'RAPID'
+    superRAPID = 'superRAPID'
+
     VELOCITY_CHOICES = [
-        ('NORMAL', 'NORMAL'),
-        ('semiRAPID', 'superRAPID'),
-        ('RAPID', 'RAPID'),
-        ('superRAPID', 'superRAPID')
+        (NORMAL, 'NORMAL'),
+        (semiRAPID, 'semiRAPID'),
+        (RAPID, 'RAPID'),
+        (superRAPID, 'superRAPID')
     ]
     velocity = models.CharField(
-        max_length=10, choices=VELOCITY_CHOICES, default='NORMAL')
+        max_length=10, choices=VELOCITY_CHOICES, unique=True)
 
     class Meta:
         app_label = "common"
@@ -58,18 +65,18 @@ class ChargerLocationType(models.Model):
     Model to represent the types of chargers.
     """
 
-    MENNEKES = "Mennekes"
+    MENNEKES = "MENNEKES"
     TESLA = "Tesla"
     SCHUKO = "Schuko"
     CHADEMO = "ChadeMO"
-    CSS_COMBO2 = "CSS Combo2"
+    CCS_COMBO2 = "CCS Combo2"
 
     CHARGER_CHOICES = [
-        (MENNEKES, "Mennekes"),
+        (MENNEKES, "MENNEKES"),
         (TESLA, "Tesla"),
         (SCHUKO, "Schuko"),
         (CHADEMO, "ChadeMO"),
-        (CSS_COMBO2, "CSS Combo2"),
+        (CCS_COMBO2, "CCS Combo2"),
     ]
 
     chargerType = models.CharField(
