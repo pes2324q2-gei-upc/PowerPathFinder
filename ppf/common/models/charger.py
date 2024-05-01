@@ -4,7 +4,6 @@ Here is the common models for all the applications.
 This will be shared through all the dockers and can be accesses by importing it.
 """
 from django.db import models
-from requests import delete
 
 
 class ChargerTypeM2M(models.Model):
@@ -25,10 +24,6 @@ class LocationCharger(models.Model):
     """
     Model for storing the location of the chargers.
     """
-    # class TypeOfCurrent(models.TextChoices):
-    #     AC = "AC"
-    #     DC = "DC"
-    #     AC_DC = "AC/DC"
 
     # General info
     promotorGestor = models.CharField(max_length=100)
