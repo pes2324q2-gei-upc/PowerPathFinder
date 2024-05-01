@@ -80,17 +80,17 @@ class ChargerLocationType(models.Model):
     """
 
     MENNEKES = "MENNEKES"
-    TESLA = "Tesla"
-    SCHUKO = "Schuko"
-    CHADEMO = "ChadeMO"
-    CCS_COMBO2 = "CCS Combo2"
+    TESLA = "TESLA"
+    SCHUKO = "SCHUKO"
+    CHADEMO = "CHADEMO"
+    CCS_COMBO2 = "CCS COMBO2"
 
     CHARGER_CHOICES = [
         (MENNEKES, "MENNEKES"),
-        (TESLA, "Tesla"),
-        (SCHUKO, "Schuko"),
-        (CHADEMO, "ChadeMO"),
-        (CCS_COMBO2, "CCS Combo2"),
+        (TESLA, "TESLA"),
+        (SCHUKO, "SCHUKO"),
+        (CHADEMO, "CHADEMO"),
+        (CCS_COMBO2, "CCS COMBO2"),
     ]
 
     chargerType = models.CharField(
