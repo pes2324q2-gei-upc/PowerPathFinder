@@ -49,10 +49,14 @@
         "[x]"
     ],
     "cSpell.words": [
+        "authtoken",
+        "csrf",
         "forloop",
+        "onclick",
         "Polyline",
         "polylines",
         "subquery"
     ],
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

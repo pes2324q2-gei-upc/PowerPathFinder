@@ -106,6 +106,17 @@
                 "cwd": "${workspaceFolder}/ppf-chat-engine",
             },
             "hide": true
-        }
+        },
+        {
+            "label": "pre debug payments",
+            "type": "shell",
+            "command": "docker compose -f 'docker-compose.development.yml' down payments-api",
+            "dependsOn": [
+                "Clean",
+                "Compose Up"
+            ],
+            "dependsOrder": "sequence",
+            "hide": true
+        },
     ]
 }

@@ -96,7 +96,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "8083:8080"
+      - "8083:8000"
     volumes:
       - ./db/chatengine:/opt/chatengine
     environment:
