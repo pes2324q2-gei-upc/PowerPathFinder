@@ -1,28 +1,36 @@
 services:
   route-api:
-    image: powerpathfinder-route-api
     container_name: route-api
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8080:8000"
 
   user-api:
-    image: powerpathfinder-user-api
     container_name: user-api
+    build:
+      context: ppf-user-api
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8081:8000"
 
   admin-page:
-    image: powerpathfinder-admin-page
     container_name: ppf-admin-page
+    build:
+      context: ppf-admin-page
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8082:8000"
 
   chat-engine:
-    image: powerpathfinder-chat-engine
     container_name: chat-engine
+    build:
+      context: ./ppf-chat-engine
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8083:8000"
@@ -33,8 +41,10 @@ services:
       - USER_API_URL=http://user-api:8000
 
   payments-api:
-    image: powerpathfinder-payments-api
     container_name: payments-api
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8084:8000"
