@@ -5,27 +5,22 @@ on:
       - "#43-Configurar-Github-Action"
 
 jobs:
- deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    # Instalar key para que el agent SSH del runner pueda ejecutar commandos de docker usando ssh
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2.7.0
+      with:
+        key: ${{ secrets.SSH_AWS_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        # name: id_rsa # optional
+        # config: ${{ secrets.CONFIG }} # ssh_config; optional
+        # if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+    - name: Checkout of chat engine
+      uses: actions/checkout@v4
 
-      - name: Deploy to EC2
-        uses: peterkimzz/aws-ssm-send-command@v1.1.1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          instance-ids: ${{ secrets.AWS_INSTANCE_ID }}
-          working-directory: /home/ubuntu/PPF/deploy
-          command: |
-            sudo docker-compose pull
-            sudo docker-compose up -d
+    - name: SCP docker-compose to remote
+      run: |
+       scp docker-compose.yml ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/ubuntu/PPF
