@@ -1,8 +1,7 @@
+name: Turbo SCP docker-compose.yml a EC2
 
 on:
- push:
-    branches:
-      - "#43-Configurar-Github-Action"
+  workflow_dispatch:    
 
 jobs:
   build:
