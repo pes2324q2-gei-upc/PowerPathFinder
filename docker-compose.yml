@@ -1,27 +1,27 @@
 services:
   route-api:
-    image: powerpathfinder-route-api
+    image: ppf-route-api
     container_name: route-api
     restart: unless-stopped
     ports:
       - "8080:8000"
 
   user-api:
-    image: powerpathfinder-user-api
+    image: ppf-user-api
     container_name: user-api
     restart: unless-stopped
     ports:
       - "8081:8000"
 
   admin-page:
-    image: powerpathfinder-admin-page
+    image: ppf-admin-page
     container_name: ppf-admin-page
     restart: unless-stopped
     ports:
       - "8082:8000"
 
   chat-engine:
-    image: powerpathfinder-chat-engine
+    image: ppf-chat-engine
     container_name: chat-engine
     restart: unless-stopped
     ports:
@@ -33,7 +33,7 @@ services:
       - USER_API_URL=http://user-api:8000
 
   payments-api:
-    image: powerpathfinder-payments-api
+    image: ppf-payments-api
     container_name: payments-api
     restart: unless-stopped
     ports:
