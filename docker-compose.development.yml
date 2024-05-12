@@ -3,7 +3,7 @@ services:
     container_name: route-api
     build:
       context: ppf-route-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8080:8000"
@@ -25,7 +25,7 @@ services:
     container_name: user-api
     build:
       context: ppf-user-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8081:8000"
@@ -49,7 +49,7 @@ services:
     container_name: ppf-admin-page
     build:
       context: ppf-admin-page
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8082:8000"
@@ -71,7 +71,7 @@ services:
     container_name: payments-api
     build:
       context: ppf-payments-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8084:8000"
@@ -93,7 +93,7 @@ services:
     container_name: chat-engine
     build:
       context: ./ppf-chat-engine
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8083:8000"
