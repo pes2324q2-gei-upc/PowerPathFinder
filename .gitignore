@@ -5,6 +5,7 @@
 /.mypy_cache
 /ppf/build
 /ppf/ppf.egg-info
+/ppf/dist
 /.env.dev
 /.env.debug
 __pycache__
