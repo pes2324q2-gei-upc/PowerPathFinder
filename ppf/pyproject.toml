@@ -10,7 +10,6 @@ dependencies = [
     "Django>=5.0",
 ]
 readme = "README.md"
-long_description_content_type = "text/markdown"
 
 [metadata]
 description = "PowerPathFinder is a powerful path finding tool."
