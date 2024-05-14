@@ -15,7 +15,7 @@ services:
 
   admin-page:
     image: ppf-admin-page
-    container_name: ppf-admin-page
+    container_name: admin-page
     restart: unless-stopped
     ports:
       - "8082:8000"
