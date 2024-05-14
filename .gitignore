@@ -4,7 +4,7 @@
 /.venv
 /.mypy_cache
 /ppf/build
-/ppf/ppf.egg-info
+/ppf/powerpathfinder_models.egg-info
 /ppf/dist
 /.env.dev
 /.env.debug

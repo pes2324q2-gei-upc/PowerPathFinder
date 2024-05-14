@@ -93,7 +93,7 @@ services:
     container_name: chat-engine
     build:
       context: ./ppf-chat-engine
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8083:8000"
