@@ -3,16 +3,16 @@ requires = ["setuptools>=69.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ppf-models"
-version = "0.0.1"
+name = "powerpathfinder-models"
+version = "0.0.2"
 requires-python = ">=3.11"
 dependencies = [
     "Django>=5.0",
 ]
-readme = {file = "README.txt", content-type = "text/markdown"}
+readme = "README.md"
 
 [metadata]
 description = "PowerPathFinder is a powerful path finding tool"
 license = "MIT"
-author = "ppf team"
-author-email = "ppf@upc.edu"
+author = "Your Name"
+author-email = "yourname@example.com"

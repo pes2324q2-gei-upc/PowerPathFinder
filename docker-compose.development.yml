@@ -3,7 +3,7 @@ services:
     container_name: route-api
     build:
       context: ppf-route-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8080:8000"
@@ -25,7 +25,7 @@ services:
     container_name: user-api
     build:
       context: ppf-user-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8081:8000"
@@ -49,7 +49,7 @@ services:
     container_name: ppf-admin-page
     build:
       context: ppf-admin-page
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8082:8000"
@@ -71,7 +71,7 @@ services:
     container_name: payments-api
     build:
       context: ppf-payments-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     ports:
       - "8084:8000"
@@ -96,9 +96,9 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "8083:8080"
+      - "8083:8000"
     volumes:
       - ./db/chatengine:/opt/chatengine
     environment:
-      - ROUTE_API_URL=http://route-api:8080
-      - USER_API_URL=http://user-api:8081
+      - ROUTE_API_URL=http://route-api:8000
+      - USER_API_URL=http://user-api:8000
