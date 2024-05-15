@@ -8,12 +8,10 @@ services:
     env_file:
       - .env
     command:
-      [
-        "python",
-        "manage.py",
-        "loaddata",
-        "load_chargerTypes.json service_profiles.json"
-      ]
+      - /bin/sh
+      - -c
+      - |
+        python manage.py loaddata load_chargerTypes.json service_profiles.json
 
   user-api:
     image: ppf-user-api
