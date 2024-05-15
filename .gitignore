@@ -12,3 +12,8 @@ __pycache__
 .env.debug
 .env.dev
 ppf/common/migrations/*_*.py
+/ppf-route-api
+/ppf-user-api
+/ppf-payments-api
+/ppf-admin-page
+/ppf-chat-engines
