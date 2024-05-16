@@ -7,7 +7,6 @@ __example: from common.models.achievement import Achievement
 """
 
 from django.db import models
-from pkg_resources import require
 from .user import User
 
 
