@@ -16,4 +16,4 @@ ppf/common/migrations/*_*.py
 /ppf-user-api
 /ppf-payments-api
 /ppf-admin-page
-/ppf-chat-engines
+/ppf-chat-engine
