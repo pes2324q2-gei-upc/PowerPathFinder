@@ -12,7 +12,7 @@ from .user import User
 
 
 class Achievement(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     image = models.ImageField(
         upload_to="achievements", null=True, blank=True, default="default.png"
