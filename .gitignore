@@ -4,10 +4,16 @@
 /.venv
 /.mypy_cache
 /ppf/build
-/ppf/ppf.egg-info
+/ppf/powerpathfinder_models.egg-info
+/ppf/dist
 /.env.dev
 /.env.debug
 __pycache__
 .env.debug
 .env.dev
 ppf/common/migrations/*_*.py
+/ppf-route-api
+/ppf-user-api
+/ppf-payments-api
+/ppf-admin-page
+/ppf-chat-engines
