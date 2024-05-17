@@ -1,6 +1,9 @@
 services:
   route-api:
     image: ppf-route-api
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile
     container_name: route-api
     restart: unless-stopped
     ports:
@@ -15,6 +18,9 @@ services:
 
   user-api:
     image: ppf-user-api
+    build:
+      context: ppf-user-api
+      dockerfile: Dockerfile
     container_name: user-api
     restart: unless-stopped
     ports:
@@ -24,6 +30,9 @@ services:
 
   admin-page:
     image: ppf-admin-page
+    build:
+      context: ppf-admin-page
+      dockerfile: Dockerfile
     container_name: admin-page
     restart: unless-stopped
     ports:
@@ -33,6 +42,9 @@ services:
 
   chat-engine:
     image: ppf-chat-engine
+    build:
+      context: ppf-chat-engine
+      dockerfile: Dockerfile
     container_name: chat-engine
     restart: unless-stopped
     ports:
@@ -47,6 +59,9 @@ services:
 
   payments-api:
     image: ppf-payments-api
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile
     container_name: payments-api
     restart: unless-stopped
     ports:
