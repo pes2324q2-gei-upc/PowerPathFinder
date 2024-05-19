@@ -42,18 +42,18 @@ class ChargerType(models.Model):
     Model to represent the types of chargers.
     """
 
-    MENNEKES = "Mennekes"
-    TESLA = "Tesla"
-    SCHUKO = "Schuko"
-    CHADEMO = "ChadeMO"
-    CSS_COMBO2 = "CSS Combo2"
+    MENNEKES = "MENNEKES"
+    TESLA = "TESLA"
+    SCHUKO = "SCHUKO"
+    CHADEMO = "CHADEMO"
+    CCS_COMBO2 = "CCS COMBO2"
 
     CHARGER_CHOICES = [
-        (MENNEKES, "Mennekes"),
-        (TESLA, "Tesla"),
-        (SCHUKO, "Schuko"),
-        (CHADEMO, "ChadeMO"),
-        (CSS_COMBO2, "CSS Combo2"),
+        (MENNEKES, "MENNEKES"),
+        (TESLA, "TESLA"),
+        (SCHUKO, "SCHUKO"),
+        (CHADEMO, "CHADEMO"),
+        (CCS_COMBO2, "CCS COMBO2"),
     ]
 
     chargerType = models.CharField(
