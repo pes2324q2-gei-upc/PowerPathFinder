@@ -1,12 +1,6 @@
-repos=("ppf-route-api" "ppf-user-api" "ppf-admin-page" "ppf-payments-api" "ppf-chat-engine")
-
 sudo "Started project cleanup"
 echo "Composing down containers, this might take a while"
 docker compose -f 'docker-compose.development.yml' down > /dev/null 2>&1
-
-for repo in "${repos[@]}"; do
-    git rm --cache $repo
-done
 
 if [ "$1" = "ultra" ]; then
     echo "This is an ultra clean, YOU WILL LOSE ALL UN-PUSHED CHANGES!!!"
