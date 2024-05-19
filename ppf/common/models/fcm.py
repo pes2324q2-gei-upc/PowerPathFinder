@@ -13,10 +13,5 @@ class FCMToken(models.Model):
     def __str__(self):
         return self.token
 
-    def renew(self, token):
-        self.token = token
-        self.ts
-        self.save()
-
     class Meta:
         app_label = "common"
