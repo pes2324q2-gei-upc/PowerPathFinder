@@ -160,3 +160,14 @@ class Report(models.Model):
 
     class Meta:
         app_label = "common"
+
+
+class GoogleCalendarCredentials(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=255)
+    refresh_token = models.CharField(max_length=255)
+    token_expiry = models.DateTimeField()
+    is_expired = models.BooleanField(default=False)
+
+    class Meta:
+        app_label = "common"
