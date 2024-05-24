@@ -37,6 +37,7 @@ services:
       - ./ppf-user-api/usrLogin:/home/app/usrLogin
       - ./ppf-user-api/emailSending:/home/app/emailSending
       - ./ppf-user-api/achievement:/home/app/achievement
+      - ./ppf-user-api/credentials:/home/app/credentials
       - ./ppf-user-api/api:/home/app/api
       - ./db:/home/app/db
     command:
