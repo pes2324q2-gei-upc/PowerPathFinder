@@ -172,20 +172,3 @@ class Report(models.Model):
 
     class Meta:
         app_label = "common"
-
-
-class TypeOfLogin(models.Model):
-    """
-    Model to represent the types of logins.
-    """
-    Google = "google"
-    Facebook = "facebook"
-    Base = "base"
-
-    typeChoices = [
-        (Google, "google"),
-        (Facebook, "facebook"),
-        (Base, "base")
-    ]
-
-    typeOfLogin = models.CharField(max_length=50, choices=typeChoices)
