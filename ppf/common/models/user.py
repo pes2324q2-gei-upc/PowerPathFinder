@@ -18,6 +18,15 @@ class User(baseUser):
         baseUser (User): default django implementation for user
             (see the documentation for more info)
     """
+    Google = "google"
+    Facebook = "facebook"
+    Base = "base"
+
+    typeLoginChoices = [
+        (Google, "google"),
+        (Facebook, "facebook"),
+        (Base, "base")
+    ]
 
     # change to keep the pk defined in the UML consistent
     baseUser.email = models.EmailField(
@@ -33,6 +42,9 @@ class User(baseUser):
     profileImage = models.ImageField(
         upload_to="profile_image", null=True, blank=True, default="default.png")
 
+    typeOfLogin = models.CharField(
+        max_length=50, choices=typeLoginChoices, default=Base)
+
     class Meta:
         app_label = "common"
 
@@ -42,18 +54,18 @@ class ChargerType(models.Model):
     Model to represent the types of chargers.
     """
 
-    MENNEKES = "Mennekes"
-    TESLA = "Tesla"
-    SCHUKO = "Schuko"
-    CHADEMO = "ChadeMO"
-    CSS_COMBO2 = "CSS Combo2"
+    MENNEKES = "MENNEKES"
+    TESLA = "TESLA"
+    SCHUKO = "SCHUKO"
+    CHADEMO = "CHADEMO"
+    CCS_COMBO2 = "CCS COMBO2"
 
     CHARGER_CHOICES = [
-        (MENNEKES, "Mennekes"),
-        (TESLA, "Tesla"),
-        (SCHUKO, "Schuko"),
-        (CHADEMO, "ChadeMO"),
-        (CSS_COMBO2, "CSS Combo2"),
+        (MENNEKES, "MENNEKES"),
+        (TESLA, "TESLA"),
+        (SCHUKO, "SCHUKO"),
+        (CHADEMO, "CHADEMO"),
+        (CCS_COMBO2, "CCS COMBO2"),
     ]
 
     chargerType = models.CharField(
