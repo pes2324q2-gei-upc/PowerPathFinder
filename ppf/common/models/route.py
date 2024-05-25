@@ -74,6 +74,7 @@ class Route(models.Model):
     destinationAlias = models.CharField(max_length=100)
 
     polyline = models.TextField()
+    waypoints = models.JSONField(default=list)
     distance = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
 
