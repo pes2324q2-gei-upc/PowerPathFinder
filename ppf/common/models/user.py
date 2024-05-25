@@ -174,12 +174,11 @@ class Report(models.Model):
         app_label = "common"
 
 
-class GoogleCalendarCredentials(models.Model):
+class GoogleOAuth2Token(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=255)
     refresh_token = models.CharField(max_length=255)
-    token_expiry = models.DateTimeField()
-    is_expired = models.BooleanField(default=False)
+    expires_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         app_label = "common"
