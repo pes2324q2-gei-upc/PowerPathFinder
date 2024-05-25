@@ -9,6 +9,7 @@ __example: from common.models import User, Driver
 from django.contrib.auth.models import User as baseUser
 from django.core.validators import MinValueValidator
 from django.db import models
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
 class User(baseUser):
@@ -36,7 +37,11 @@ class User(baseUser):
     createdAt = models.DateTimeField("Creation date of the User", auto_now=False, auto_now_add=True)
 
     profileImage = models.ImageField(
-        upload_to="profile_image", null=True, blank=True, default="default.png"
+        upload_to="profile_image/",
+        null=True,
+        blank=True,
+        default="default.png",
+        storage=S3Boto3Storage(location="media/profile_image"),
     )
 
     typeOfLogin = models.CharField(max_length=50, choices=typeLoginChoices, default=Base)
