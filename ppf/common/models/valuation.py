@@ -11,6 +11,7 @@ from django.db import models
 from .user import User
 from .route import Route
 
+
 class Valuation(models.Model):
     """
     Model for storing valuations given by users to users or drivers.
@@ -35,6 +36,7 @@ class Valuation(models.Model):
         choices=RATING_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     comment = models.TextField(blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         """

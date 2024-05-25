@@ -7,7 +7,9 @@ __example: from common.models import User, Driver
 """
 
 from django.contrib.auth.models import User as baseUser
+from django.core.validators import MinValueValidator
 from django.db import models
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
 class User(baseUser):
@@ -19,19 +21,30 @@ class User(baseUser):
             (see the documentation for more info)
     """
 
+    Google = "google"
+    Facebook = "facebook"
+    Base = "base"
+
+    typeLoginChoices = [(Google, "google"), (Facebook, "facebook"), (Base, "base")]
+
     # change to keep the pk defined in the UML consistent
-    baseUser.email = models.EmailField(
-        "email address", unique=True)  # type: ignore
+    baseUser.email = models.EmailField("email address", unique=True)  # type: ignore
     birthDate = models.DateField(auto_now=False, auto_now_add=False)
     points = models.IntegerField(default=0)
     updatedAt = models.DateTimeField(
         "Last modification of the User", auto_now=True, auto_now_add=False
     )
-    createdAt = models.DateTimeField(
-        "Creation date of the User", auto_now=False, auto_now_add=True)
+    createdAt = models.DateTimeField("Creation date of the User", auto_now=False, auto_now_add=True)
 
     profileImage = models.ImageField(
-        upload_to="profile_image", null=True, blank=True, default="default.png")
+        upload_to="profile_image/",
+        null=True,
+        blank=True,
+        default="default.png",
+        storage=S3Boto3Storage(location="media/profile_image"),
+    )
+
+    typeOfLogin = models.CharField(max_length=50, choices=typeLoginChoices, default=Base)
 
     class Meta:
         app_label = "common"
@@ -42,22 +55,21 @@ class ChargerType(models.Model):
     Model to represent the types of chargers.
     """
 
-    MENNEKES = "Mennekes"
-    TESLA = "Tesla"
-    SCHUKO = "Schuko"
-    CHADEMO = "ChadeMO"
-    CSS_COMBO2 = "CSS Combo2"
+    MENNEKES = "MENNEKES"
+    TESLA = "TESLA"
+    SCHUKO = "SCHUKO"
+    CHADEMO = "CHADEMO"
+    CCS_COMBO2 = "CCS COMBO2"
 
     CHARGER_CHOICES = [
-        (MENNEKES, "Mennekes"),
-        (TESLA, "Tesla"),
-        (SCHUKO, "Schuko"),
-        (CHADEMO, "ChadeMO"),
-        (CSS_COMBO2, "CSS Combo2"),
+        (MENNEKES, "MENNEKES"),
+        (TESLA, "TESLA"),
+        (SCHUKO, "SCHUKO"),
+        (CHADEMO, "CHADEMO"),
+        (CCS_COMBO2, "CCS COMBO2"),
     ]
 
-    chargerType = models.CharField(
-        max_length=20, choices=CHARGER_CHOICES, unique=True)
+    chargerType = models.CharField(max_length=20, choices=CHARGER_CHOICES, unique=True)
 
     def __str__(self):
         return self.chargerType
@@ -111,15 +123,13 @@ class Driver(User):
     # Rest of the fields needed
     dni = models.CharField(max_length=50, unique=True)
     driverPoints = models.IntegerField(default=0)
-    autonomy = models.IntegerField(default=0)
+    autonomy = models.IntegerField(default=1, validators=[MinValueValidator(1)])
 
     # Charger type attributes
-    chargerTypes = models.ManyToManyField(
-        "ChargerType", related_name="drivers")
+    chargerTypes = models.ManyToManyField("ChargerType", related_name="drivers")
 
     # Preferences attributes
-    preference = models.OneToOneField(
-        "Preference", on_delete=models.CASCADE, null=True)
+    preference = models.OneToOneField("Preference", on_delete=models.CASCADE, null=True)
 
     iban = models.CharField(max_length=36, unique=True, blank=True)
 
@@ -141,10 +151,8 @@ class Report(models.Model):
     Model for storing Reports given by users to users or drivers.
     """
 
-    reporter = models.ForeignKey(
-        User, related_name="report_giver", on_delete=models.CASCADE)
-    reported = models.ForeignKey(
-        User, related_name="report_receiver", on_delete=models.CASCADE)
+    reporter = models.ForeignKey(User, related_name="report_giver", on_delete=models.CASCADE)
+    reported = models.ForeignKey(User, related_name="report_receiver", on_delete=models.CASCADE)
 
     updatedAt = models.DateTimeField(
         "Last modification of the Report", auto_now=True, auto_now_add=False
