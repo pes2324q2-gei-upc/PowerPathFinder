@@ -70,6 +70,9 @@
             "label": "pre debug route",
             "type": "shell",
             "command": "docker compose -f 'docker-compose.development.yml' down route-api",
+            "windows": {
+                "command": "docker compose -f docker-compose.development.yml down route-api",
+            },
             "dependsOn": [
                 "Clean",
                 "Compose Up"
